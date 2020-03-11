@@ -1,0 +1,114 @@
+commit 9492be3334bf854c543f9194295a49f88b8c8e6e
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:23:13 2020 +0200
+
+    poisto ja uudelleennimeäminen
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7588cc8c005afaf134f2bc285c6582f37ed99557
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:20:15 2020 +0200
+
+    uudet tiedostot uuteen kansioon tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4d6b84024ca011a46a30118df2ef0c13f8b05f70
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:13:54 2020 +0200
+
+    ekan ja kolmannen muutoksia ja poistoja
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+commit 1d70f26d887f6654c1695a56997ade424d48e714
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:11:25 2020 +0200
+
+    tiedosto.txt uudelleennimettiin nimelle eka.txt
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4f820ebd0a9a3b4c1b9a8b9c477242453f0fa62d
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:09:17 2020 +0200
+
+    toinen.txt poistettiin
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit dd29fc73ae10bcb8dd12634af51916acdc23c8ed
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:07:25 2020 +0200
+
+    Artikkelista poistettiin lähteet ja kirjoitettiin, että näin tehtiin
+
+ tiedosto.txt | 30 +-----------------------------
+ 1 file changed, 1 insertion(+), 29 deletions(-)
+
+commit 377c4a3d333430369c5c6cc67d1cda8658555842
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 18:05:16 2020 +0200
+
+    Therac 25 artikkeli :)
+
+ tiedosto.txt | 520 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 520 insertions(+)
+
+commit f670b5a9580d01ec01b75f6e0e5197c5c800c16c
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 17:55:55 2020 +0200
+
+    stuff kansioon luotu tiedosto
+
+ stuff/i-am-the-stuff.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e9ccfd832ea5032c6ea772df34994d6c53fe6d32
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 17:54:13 2020 +0200
+
+    muutoksia tokaan ja kolmanteen
+
+ kolmas.txt | 2 ++
+ toinen.txt | 1 +
+ 2 files changed, 3 insertions(+)
+
+commit 6cd03b0245621f62b57de4b714dba2b0abfcd230
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 17:50:08 2020 +0200
+
+    kolmas tiedosto luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c543fa6b6142b3f705c8cd3b9cdeee5f117f5c90
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 17:44:27 2020 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit 41a632097256b17a62d58048edf8e3da456cc3c9
+Author: Iira <iira.hakkinen@helsinki.fi>
+Date:   Wed Mar 11 17:40:15 2020 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
