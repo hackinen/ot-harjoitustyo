@@ -18,7 +18,7 @@ Koska kyseessä on yksilöpeli, on pelillä vain yksi käyttäjä eli pelin pela
 
 Sovelluksen käyttöliittymä koostuu mahdollisesti kahdesta eri näkymästä: valikosta ja itse pelinäkymästä. Sovellus siis aukeaa ensin valikkonäkymään, josta valitaan pelin haastavuus (kuinka iso ruudukko halutaan), jonka jälkeen siirrytään valittuun pelinäkymään. Mikäli valikkonäkymää ei ehditä toteuttamaa, koostuu käyttölittymä ainoastaan pelinäkymästä.
 
-
+![alt text](https://github.com/hackinen/ot-harjoitustyo/tree/master/dokumentointi/misc)
 
 
 ## Perusversion tarjoama toiminallisuus
