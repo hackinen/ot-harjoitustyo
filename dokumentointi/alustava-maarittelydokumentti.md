@@ -35,3 +35,4 @@ Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi 
 ** mahdollisesti vielä käyttäjäkirjautuminen, jotta listauksessa näkyy tuloksen saanut pelaaja
 
 Kehitysideoista vähintään valikon toteuttaminen pyritään saada kurssin loppuun mennessä toteutettua.
+
