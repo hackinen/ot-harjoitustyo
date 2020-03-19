@@ -2,10 +2,10 @@
 
 ## Sovelluksen tarkoitus
 
-Tarkoituksena on toteuttaa Javalla miinaharava-peli. Pelissä on joku n*m
+Tarkoituksena on toteuttaa Javalla miinaharava-peli. Pelissä on jokin n*m
 kokoinen ruudukkokenttä (alkuun luodaan valikko, jossa valitaan pelattavan
 kentän koko), joka sisältää miinoja ja numeroituja arvoja, jotka kertovat
-koinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena
+kuinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena
 on saada pääteltyä kaikki ruudukon miinojen paikat ja merkitä ne lipulla.
 
 
@@ -32,7 +32,7 @@ Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi 
 * pelin teeman muuttaminen (ruutujen väri)
 * miinojen määrän muuttaminen
 * ajastin ja parhaiden tulosten tallentaminen
-** mahdollisesti vielä käyttäjäkirjautuminen, jotta listauksessa näkyy tuloksen saanut pelaaja
+* mahdollisesti vielä käyttäjäkirjautuminen tai nimimerkin luominen, jotta listauksessa näkyy tuloksen saanut pelaaja
 
 Kehitysideoista vähintään valikon toteuttaminen pyritään saada kurssin loppuun mennessä toteutettua.
 
