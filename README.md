@@ -16,3 +16,7 @@
 
 [testikattavuus.png](https://github.com/hackinen/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
 
+
+## Harjoitustyö - Miinaharava
+
+[Alustava määrittelydokumentti](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/alustava-maarittelydokumentti.md)
