@@ -1,0 +1,37 @@
+# Vaatimusmäärittely
+
+## Sovelluksen tarkoitus
+
+Tarkoituksena on toteuttaa Javalla miinaharava-peli. Pelissä on joku n*m
+kokoinen ruudukkokenttä (alkuun luodaan valikko, jossa valitaan pelattavan
+kentän koko), joka sisältää miinoja ja numeroituja arvoja, jotka kertovat
+koinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena
+on saada pääteltyä kaikki ruudukon miinojen paikat ja merkitä ne lipulla.
+
+
+## Käyttäjät
+
+Koska kyseessä on yksilöpeli, on pelillä vain yksi käyttäjä eli pelin pelaaja.
+
+
+## Käyttöliittymäluonnos
+
+Sovelluksen käyttöliittymä koostuu mahdollisesti kahdesta eri näkymästä: valikosta ja itse pelinäkymästä. Sovellus siis aukeaa ensin valikkonäkymään, josta valitaan pelin haastavuus (kuinka iso ruudukko halutaan), jonka jälkeen siirrytään valittuun pelinäkymään. Mikäli valikkonäkymää ei ehditä toteuttamaa, koostuu käyttölittymä ainoastaan pelinäkymästä.
+
+
+## Perusversion tarjoama toiminallisuus
+
+Perusversiossa ohjelma aukeaa suoraan pelinäkymään (ilman valikkoa), jossa käyttäjän on mahdollista pelata peliä ja aloittaa peli alusta halutessaan.
+
+
+## Jatkokehitysideoita
+
+Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi seuraavilla toiminnoilla:
+
+* valikon luominen ja ruudukon koon valinta
+* pelin teeman muuttaminen (ruutujen väri)
+* miinojen määrän muuttaminen
+* ajastin ja parhaiden tulosten tallentaminen
+** mahdollisesti vielä käyttäjäkirjautuminen, jotta listauksessa näkyy tuloksen saanut pelaaja
+
+Kehitysideoista vähintään valikon toteuttaminen pyritään saada kurssin loppuun mennessä toteutettua.
