@@ -1,5 +1,13 @@
 # Ohjelmistotekniikka, harjoitustyo
 
+## Harjoitustyö - Miinaharava
+
+### Dokumentointi
+
+[Alustava määrittelydokumentti](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/alustava-maarittelydokumentti.md)
+
+[Työaikakirjanpito](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
+
 ## Tehtävät
 
 ### Viikko 1
@@ -15,8 +23,3 @@
 [Unicafe](https://github.com/hackinen/ot-harjoitustyo/tree/master/laskarit/viikko2/Unicafe)
 
 [testikattavuus.png](https://github.com/hackinen/ot-harjoitustyo/blob/master/laskarit/viikko2/testikattavuus.png)
-
-
-## Harjoitustyö - Miinaharava
-
-[Alustava määrittelydokumentti](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/alustava-maarittelydokumentti.md)
