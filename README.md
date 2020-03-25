@@ -7,4 +7,4 @@ Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja
 
 [Työaikakirjanpito](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
-##Komentorivitoiminnot
+## Komentorivitoiminnot
