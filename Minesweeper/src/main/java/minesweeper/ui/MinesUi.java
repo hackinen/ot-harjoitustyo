@@ -5,6 +5,7 @@
  */
 package minesweeper.ui;
 
+import minesweeper.domain.*;
 import javafx.application.Application;
 import javafx.scene.*;
 import javafx.scene.control.*;
@@ -26,14 +27,31 @@ public class MinesUi extends Application {
     private static Image two;
     private static Image three;
     private static Image four;
+    private static Image five;
+    private static Image six;
+    private static Image seven;
+    private static Image eight;
+    private static Image flag;
+    private static Image wrongFlag;
+    private static Image mine;
+    private static Image angryMine;
+    
     
     @Override
     public void start(Stage stage) throws Exception {
         //fetching the graphics
         one = new Image("file:graphics/one.png",20,20,true,true);
-        //two = new Image("graphics/two.png");
-        //three = new Image("graphics/three.png");
-        //four = new Image("graphics/four.png");
+        two = new Image("graphics/two.png",20,20,true,true);
+        three = new Image("graphics/three.png",20,20,true,true);
+        four = new Image("graphics/four.png",20,20,true,true);
+        five = new Image("graphics/five.png",20,20,true,true);
+        six = new Image("graphics/six.png",20,20,true,true);
+        seven = new Image("graphics/seven.png",20,20,true,true);
+        eight = new Image("graphics/eight.png",20,20,true,true);
+        flag = new Image("graphics/flag.png",20,20,true,true);
+        wrongFlag = new Image("graphics/wrongFlag.png",20,20,true,true);
+        mine = new Image("graphics/mine.png",20,20,true,true);
+        angryMine = new Image("graphics/angryMine.png",20,20,true,true);
         
         stage.setTitle("Minesweeper");
         
