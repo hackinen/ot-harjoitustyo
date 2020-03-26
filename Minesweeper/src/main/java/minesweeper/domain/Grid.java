@@ -28,6 +28,7 @@ public class Grid {
         }
         
         addMinesToGrid((size*size)/8);
+        addValuesToGrid();
     }
     
     public void addMinesToGrid(int mines) {
@@ -78,6 +79,10 @@ public class Grid {
     
     public Cell getCell(int x, int y) {
         return grid[x][y];
+    }
+    
+    public int getCellValue(int x, int y) {
+        return grid[x][y].getValue();
     }
     
     @Override
