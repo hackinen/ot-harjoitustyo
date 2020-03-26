@@ -6,3 +6,4 @@
 |19.3. | 1.5 | alustavan määrittelydokumentin luominen ja käyttöjärjestelmäluonnoksen piirtäminen |
 |22.3. | 2.5 | projektin luominen, sen toimimaan saaminen, miinaharavan käyttöliittymän aloitus ja grafiikojen piirtäminen |
 |25.3. | 2.5 | Käyttöliittymän päivittäminen, luokkien Cell ja Grid toteuttaminen |
+|26.3. | 0.5 | Käyttöliittymän ja sovelluslogiikan yhdistämisen aloittaminen |
