@@ -31,6 +31,18 @@ public class Grid {
         addValuesToGrid();
     }
     
+    //constructor for testing the methods addMinesToGrid and addValuesToGrid
+    public Grid() {
+        this.size=10;
+        this.grid=new Cell[size][size];
+        
+        for (int i=0 ; i<size ; i++) {
+            for (int j=0; j<size ; j++) {
+                grid[i][j]=new Cell(i,j);
+            }
+        }
+    }
+    
     public void addMinesToGrid(int mines) {
         Random random = new Random();
         
@@ -76,6 +88,7 @@ public class Grid {
             return 0;
         }
     }
+    
     
     public Cell getCell(int x, int y) {
         return grid[x][y];

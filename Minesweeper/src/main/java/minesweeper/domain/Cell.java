@@ -48,6 +48,10 @@ public class Cell {
         return flagged;
     }
 
+    public boolean isCovered() {
+        return this.covered;
+    }
+    
     public int getValue() {
         return value;
     }

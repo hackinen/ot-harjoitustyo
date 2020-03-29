@@ -22,7 +22,9 @@ public class MinesUi extends Application {
     private static int width = 800;
     private static int height = 600;
     private static int gridSize = 10;
-    private static Button[][] buttons = new Button[gridSize+1][gridSize+1];
+    private static Button[][] buttons = new Button[gridSize][gridSize];
+    private static GridPane gridPane;
+    private static Grid grid;
     
     //graphics
     private static Image one;
@@ -38,6 +40,8 @@ public class MinesUi extends Application {
     private static Image mine;
     private static Image angryMine;
     
+
+
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -60,17 +64,18 @@ public class MinesUi extends Application {
         //layoyt of the game
         BorderPane layout = new BorderPane();
         Button newGameButton = new Button("new game");
-        GridPane gridPane = new GridPane();
+        gridPane = new GridPane();
         layout.setTop(newGameButton);
         //new game
-        Grid grid = new Grid(10);
+        grid = new Grid(gridSize);
         
         //creating the grid and adding the buttons
-        for (int x=1; x<11; x++) {
-            for (int y=1; y<11; y++) {
+        for (int x=0; x<gridSize; x++) {
+            for (int y=0; y<gridSize; y++) {
                 Button button = new Button("");
-                gridPane.add(button, x, y);
                 buttons[x][y]=button;
+                gridPane.add(buttons[x][y], y, x);
+                
                 button.setMaxSize(25, 25);
                 button.setMinSize(25, 25);
                 button.setStyle("-fx-focus-color: transparent ; -fx-faint-focus-color: transparent ;");
@@ -81,25 +86,22 @@ public class MinesUi extends Application {
                 //defining the action on mouseclick
                 button.setOnAction(new EventHandler<ActionEvent>() {
                    public void handle(ActionEvent event) {
-                       actionOnMouseClick(button,gridPane,grid,xf,yf);
+                       actionOnMouseClick(xf,yf);
                    }
                 });
             }
         }
-        
-        
+
         
         layout.setCenter(gridPane);
-        
-        
-        
+  
         Scene scene = new Scene(layout);
         
         stage.setScene(scene);
         stage.show();
     }
     
-    public static void actionOnMouseClick(Button button, GridPane gridPane, Grid grid, int x, int y) {
+    public static void actionOnMouseClick(int x, int y) {
         ImageView ivOne = new ImageView(one);
         ImageView ivTwo = new ImageView(two);
         ImageView ivThree = new ImageView(three);
@@ -109,29 +111,66 @@ public class MinesUi extends Application {
         ImageView ivSeven = new ImageView(seven);
         ImageView ivEight = new ImageView(eight);
         ImageView ivAngryMine = new ImageView(angryMine);
-        
-        if (grid.getCellValue(x, y)==1) {
-            button.setGraphic(ivOne);
-        } else if (grid.getCellValue(x, y)==2) {
-            button.setGraphic(ivTwo);
-        } else if (grid.getCellValue(x, y)==3) {
-            button.setGraphic(ivThree);
-        } else if (grid.getCellValue(x, y)==4) {
-            button.setGraphic(ivFour);
-        } else if (grid.getCellValue(x,y)==5) {
-            button.setGraphic(ivFive);
-        } else if (grid.getCellValue(x, y)==6) {
-            button.setGraphic(ivSix);
-        } else if (grid.getCellValue(x, y)==7) {
-            button.setGraphic(ivSeven);
-        } else if (grid.getCellValue(x, y)==8) {
-            button.setGraphic(ivEight);
-        } else if (grid.getCellValue(x, y)==9) {
-            button.setGraphic(ivAngryMine);
+
+        System.out.println(grid.toString());
+        switch (grid.getCellValue(x, y)) {
+            case 1:
+                buttons[x][y].setGraphic(ivOne);
+                break;
+            case 2:
+                buttons[x][y].setGraphic(ivTwo);
+                break;
+            case 3:
+                buttons[x][y].setGraphic(ivThree);
+                break;
+            case 4:
+                buttons[x][y].setGraphic(ivFour);
+                break;
+            case 5:
+                buttons[x][y].setGraphic(ivFive);
+                break;
+            case 6:
+                buttons[x][y].setGraphic(ivSix);
+                break;
+            case 7:
+                buttons[x][y].setGraphic(ivSeven);
+                break;
+            case 8:
+                buttons[x][y].setGraphic(ivEight);
+                break;
+            case 9:
+                buttons[x][y].setGraphic(ivAngryMine);
+                break;
+            case 0:
+                openUntilNotEmpty(x,y);
+            default:
+                break;
         }
         
-        button.setDisable(true);
+        buttons[x][y].setDisable(true);
         gridPane.requestFocus();
+    }
+    
+    public static void openUntilNotEmpty(int x, int y) {
+        if (x<0 || y<0 || x>=gridSize || y>=gridSize) {
+            return;
+        }
+        if (buttons[x][y].isDisabled()) {
+            return;
+        }
+        if (grid.getCellValue(x,y)!=0 && grid.getCellValue(x, y)<9) {
+            actionOnMouseClick(x,y);
+            return;
+        }
+        buttons[x][y].setDisable(true);
+        openUntilNotEmpty(x-1,y);
+        openUntilNotEmpty(x-1,y+1);
+        openUntilNotEmpty(x,y+1);
+        openUntilNotEmpty(x+1,y+1);
+        openUntilNotEmpty(x+1,y);
+        openUntilNotEmpty(x+1,y-1);
+        openUntilNotEmpty(x,y-1);
+        openUntilNotEmpty(x-1,y-1);
     }
     
     public static void main(String[] args) {

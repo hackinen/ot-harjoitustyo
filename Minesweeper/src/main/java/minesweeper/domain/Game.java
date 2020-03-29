@@ -4,6 +4,16 @@
  * and open the template in the editor.
  */
 package minesweeper.domain;
+
+import minesweeper.ui.*;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
+import javafx.scene.image.*;
 /**
  *
  * @author hiira
@@ -11,7 +21,6 @@ package minesweeper.domain;
 public class Game {
     private Grid grid;
     
-    public Game(int gridSize) {
-        this.grid=new Grid(gridSize);
-    }
+
+     
 }
