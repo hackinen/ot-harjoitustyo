@@ -15,11 +15,13 @@ import java.util.Random;
  */
 public class Grid {
     private int size;       //the size of the grid (square)
-    private Cell[][] grid;   
+    private Cell[][] grid;
+    private boolean gameOnGoing;
     
     public Grid(int size) {
         this.size = size;
         this.grid = new Cell[size][size];
+        this.gameOnGoing=true;
         
         for (int i=0 ; i<size ; i++) {
             for (int j=0; j<size ; j++) {
@@ -89,6 +91,67 @@ public class Grid {
         }
     }
     
+    public void openCell(int x, int y) {
+        if (getCell(x,y).isFlagged()) {
+            return;
+        }
+        if (getCellValue(x,y)==0) {
+            openUntilNotEmpty(x,y);
+        }
+        
+        if (getCellValue(x,y)>0 ) {
+            getCell(x,y).open();
+            
+            if (getCellValue(x,y)==9) {
+                this.gameOnGoing=false;
+            }
+        }
+    }
+    
+    public void openUntilNotEmpty(int x, int y) {
+        if (x<0 || y<0 || x>=size || y>=size) {
+            return;
+        }
+        if (this.getCell(x,y).isOpened()) {
+            return;
+        }
+        if (this.getCell(x, y).isFlagged()) {
+            return;
+        }
+        if (getCellValue(x,y)!=0 && getCellValue(x, y)<9) {
+            getCell(x,y).open();
+            return;
+        }
+        getCell(x,y).open();
+        openUntilNotEmpty(x-1,y);
+        openUntilNotEmpty(x-1,y+1);
+        openUntilNotEmpty(x,y+1);
+        openUntilNotEmpty(x+1,y+1);
+        openUntilNotEmpty(x+1,y);
+        openUntilNotEmpty(x+1,y-1);
+        openUntilNotEmpty(x,y-1);
+        openUntilNotEmpty(x-1,y-1);
+    }
+    
+    public void revealTheGrid(int x, int y) {
+        grid[x][y].setAsAngryMine();
+        
+        for (int i=0; i<this.size; i++) {
+            for (int j=0; j<this.size; j++) {
+                Cell cell=grid[i][j];
+                
+                if (cell.isFlagged() && !cell.isMine()) {
+                    cell.setFlaggedWrong();
+                    cell.open();
+                }
+                
+                if (!cell.isFlagged() && cell.isMine()) {
+                    cell.open();
+                }
+                
+            }
+        }
+    }
     
     public Cell getCell(int x, int y) {
         return grid[x][y];
@@ -96,6 +159,14 @@ public class Grid {
     
     public int getCellValue(int x, int y) {
         return grid[x][y].getValue();
+    }
+    
+    public boolean isGameOnGoing() {
+        return this.gameOnGoing;
+    }
+    
+    public boolean cellIsOpened(int x, int y) {
+        return grid[x][y].isOpened();
     }
     
     @Override

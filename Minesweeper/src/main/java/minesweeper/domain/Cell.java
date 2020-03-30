@@ -17,20 +17,28 @@ public class Cell {
     9 = mine
     */
     private int value;
-    private boolean covered;
+    private boolean opened;
     private boolean flagged;
+    private boolean flaggedWrong;
+    private boolean isAngryMine;
     private int x, y;
     
     public Cell(int x, int y) {
         this.x=x;
         this.y=y;
         
-        this.covered=true;
+        this.opened=false;
         this.flagged=false;
+        this.isAngryMine=false;
+        this.flaggedWrong=false;
     }
     
     public void flag() {
         this.flagged=!flagged;
+    }
+    
+    public void open() {
+        this.opened=true;
     }
     
     public void setMine() {
@@ -44,12 +52,24 @@ public class Cell {
         return false;
     }
     
+    public boolean isAngryMine() {
+        return isAngryMine;
+    }
+    
     public boolean isFlagged() {
         return flagged;
     }
 
-    public boolean isCovered() {
-        return this.covered;
+    public boolean isOpened() {
+        return this.opened;
+    }
+    
+    public boolean isFlaggedWrong() {
+        return this.flaggedWrong;
+    }
+    
+    public void setFlaggedWrong() {
+        this.flaggedWrong=true;
     }
     
     public int getValue() {
@@ -58,6 +78,10 @@ public class Cell {
 
     public void setValue(int value) {
         this.value=value;
+    }
+    
+    public void setAsAngryMine() {
+        this.isAngryMine=true;
     }
     
     

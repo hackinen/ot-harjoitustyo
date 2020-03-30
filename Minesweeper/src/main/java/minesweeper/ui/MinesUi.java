@@ -5,6 +5,7 @@
  */
 package minesweeper.ui;
 
+
 import minesweeper.domain.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import javafx.scene.image.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 /**
  *
  * @author hiira
@@ -41,7 +44,9 @@ public class MinesUi extends Application {
     private static Image angryMine;
     
 
-
+    public static void main(String[] args) {
+        launch(MinesUi.class);
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -67,8 +72,28 @@ public class MinesUi extends Application {
         gridPane = new GridPane();
         layout.setTop(newGameButton);
         //new game
-        grid = new Grid(gridSize);
+        newGame(gridSize);
         
+        //new game button eventHandler
+        newGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                newGame(gridSize);
+            }
+        });
+        
+        layout.setCenter(gridPane);
+  
+        Scene scene = new Scene(layout);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+     public static void newGame(int size) {
+        grid = new Grid(size);
+        gridSize=size;
+        gridPane.getChildren().clear();
         //creating the grid and adding the buttons
         for (int x=0; x<gridSize; x++) {
             for (int y=0; y<gridSize; y++) {
@@ -84,96 +109,122 @@ public class MinesUi extends Application {
                 final int yf=y;
                 
                 //defining the action on mouseclick
-                button.setOnAction(new EventHandler<ActionEvent>() {
-                   public void handle(ActionEvent event) {
-                       actionOnMouseClick(xf,yf);
-                   }
+                buttons[x][y].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        MouseButton btn = event.getButton();
+                        if (grid.isGameOnGoing()) {
+                            if (btn==MouseButton.PRIMARY) {
+                                actionOnMouseClick(xf,yf);
+                            } 
+                            if (btn==MouseButton.SECONDARY) {
+                                actionOnRightMouseClick(xf,yf);
+                            }
+                        }
+                       
+                    }
                 });
             }
         }
-
-        
-        layout.setCenter(gridPane);
-  
-        Scene scene = new Scene(layout);
-        
-        stage.setScene(scene);
-        stage.show();
     }
     
     public static void actionOnMouseClick(int x, int y) {
-        ImageView ivOne = new ImageView(one);
-        ImageView ivTwo = new ImageView(two);
-        ImageView ivThree = new ImageView(three);
-        ImageView ivFour = new ImageView(four);
-        ImageView ivFive = new ImageView(five);
-        ImageView ivSix = new ImageView(six);
-        ImageView ivSeven = new ImageView(seven);
-        ImageView ivEight = new ImageView(eight);
-        ImageView ivAngryMine = new ImageView(angryMine);
-
+        grid.openCell(x,y);
+        update();
+    }
+    
+    public static void actionOnRightMouseClick(int x,int y) {
         System.out.println(grid.toString());
-        switch (grid.getCellValue(x, y)) {
-            case 1:
-                buttons[x][y].setGraphic(ivOne);
-                break;
-            case 2:
-                buttons[x][y].setGraphic(ivTwo);
-                break;
-            case 3:
-                buttons[x][y].setGraphic(ivThree);
-                break;
-            case 4:
-                buttons[x][y].setGraphic(ivFour);
-                break;
-            case 5:
-                buttons[x][y].setGraphic(ivFive);
-                break;
-            case 6:
-                buttons[x][y].setGraphic(ivSix);
-                break;
-            case 7:
-                buttons[x][y].setGraphic(ivSeven);
-                break;
-            case 8:
-                buttons[x][y].setGraphic(ivEight);
-                break;
-            case 9:
-                buttons[x][y].setGraphic(ivAngryMine);
-                break;
-            case 0:
-                openUntilNotEmpty(x,y);
-            default:
-                break;
+        grid.getCell(x, y).flag();
+        update();
+    }
+    
+    public static void update() {
+        for (int i=0; i<gridSize; i++) {
+            for (int j=0; j<gridSize; j++) {
+                if (grid.cellIsOpened(i,j)) {
+                    buttons[i][j].setDisable(true);
+                    switch (grid.getCellValue(i, j)) {
+                        case 1:
+                            ImageView ivOne = new ImageView(one);
+                            buttons[i][j].setGraphic(ivOne);
+                            break;
+                        case 2:
+                            ImageView ivTwo = new ImageView(two);
+                            buttons[i][j].setGraphic(ivTwo);
+                            break;
+                        case 3:
+                            ImageView ivThree = new ImageView(three);
+                            buttons[i][j].setGraphic(ivThree);
+                            break;
+                        case 4:
+                            ImageView ivFour = new ImageView(four);
+                            buttons[i][j].setGraphic(ivFour);
+                            break;
+                        case 5:
+                            ImageView ivFive = new ImageView(five);
+                            buttons[i][j].setGraphic(ivFive);
+                            break;
+                        case 6:
+                            ImageView ivSix = new ImageView(six);
+                            buttons[i][j].setGraphic(ivSix);
+                            break;
+                        case 7:
+                            ImageView ivSeven = new ImageView(seven);
+                            buttons[i][j].setGraphic(ivSeven);
+                            break;
+                        case 8:
+                            ImageView ivEight = new ImageView(eight);
+                            buttons[i][j].setGraphic(ivEight);
+                            break;
+                        case 9:
+                            ImageView ivAngryMine = new ImageView(angryMine);
+                            buttons[i][j].setGraphic(ivAngryMine);
+                            grid.revealTheGrid(i,j);
+                            showMines();
+                            return;
+                        case 0:
+                            buttons[i][j].setDisable(true);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                if (grid.getCell(i, j).isFlagged()) {
+                    ImageView ivFlag = new ImageView(flag);
+                    buttons[i][j].setGraphic(ivFlag);
+                }
+                if (!grid.getCell(i, j).isFlagged() && !grid.getCell(i, j).isOpened()) {
+                    buttons[i][j].setGraphic(null);
+                }
+            }
         }
-        
-        buttons[x][y].setDisable(true);
         gridPane.requestFocus();
     }
     
-    public static void openUntilNotEmpty(int x, int y) {
-        if (x<0 || y<0 || x>=gridSize || y>=gridSize) {
-            return;
+    public static void showMines() {
+        
+        for (int i=0; i<gridSize; i++) {
+            for (int j=0; j<gridSize; j++) {
+                
+                buttons[i][j].setDisable(true);
+                
+                if (grid.cellIsOpened(i,j)) {
+                    
+                    if (grid.getCellValue(i, j)==9 && !grid.getCell(i, j).isAngryMine()) {
+                        ImageView ivMine = new ImageView(mine);
+                        buttons[i][j].setGraphic(ivMine);
+                    }
+                    
+                    if (grid.getCell(i, j).isFlaggedWrong()) {
+                        ImageView ivWrongFlag = new ImageView(wrongFlag);
+                        buttons[i][j].setGraphic(ivWrongFlag);
+                    }
+                }
+            }
         }
-        if (buttons[x][y].isDisabled()) {
-            return;
-        }
-        if (grid.getCellValue(x,y)!=0 && grid.getCellValue(x, y)<9) {
-            actionOnMouseClick(x,y);
-            return;
-        }
-        buttons[x][y].setDisable(true);
-        openUntilNotEmpty(x-1,y);
-        openUntilNotEmpty(x-1,y+1);
-        openUntilNotEmpty(x,y+1);
-        openUntilNotEmpty(x+1,y+1);
-        openUntilNotEmpty(x+1,y);
-        openUntilNotEmpty(x+1,y-1);
-        openUntilNotEmpty(x,y-1);
-        openUntilNotEmpty(x-1,y-1);
     }
     
-    public static void main(String[] args) {
-        launch(MinesUi.class);
-    }
+   
+    
 }

@@ -8,3 +8,4 @@
 |25.3. | 2.5 | Käyttöliittymän päivittäminen, luokkien Cell ja Grid toteuttaminen |
 |26.3. | 0.5 | Käyttöliittymän ja sovelluslogiikan yhdistämisen aloittaminen |
 |29.3. | 5 | Käyttöliittymän ja sovelluslogiikan yhdistäminen, sovelluslogiikan parantelu, koodin refaktorointi |
+|30.3. | 1.5 | Koodin refaktorointi (käyttöliittymän ja sovelluslogiikan eriyttäminen paremmin omiin luokkiinsa), sovelluslogiikan parantelu, "new game"-napin toiminnallisuus, pelin häviämisen toiminnallisuus |

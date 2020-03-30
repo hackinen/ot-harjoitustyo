@@ -51,6 +51,6 @@ public class CellTest {
     public void newCellIdNotOpened() {
         Cell cell = new Cell(0,0);
         
-        assertEquals(true,cell.isCovered());
+        assertEquals(true,cell.isOpened());
     }
 }
