@@ -134,7 +134,6 @@ public class MinesUi extends Application {
     }
     
     public static void actionOnRightMouseClick(int x,int y) {
-        System.out.println(grid.toString());
         grid.getCell(x, y).flag();
         update();
     }

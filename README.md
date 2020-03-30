@@ -1,5 +1,7 @@
 # Miinaharava
-Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja arvoja, jotka kertovat kuinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena on saada pääteltyä kaikki ruudukon miinojen paikat räjäyttämättä (eli avaamatta miinan sisältävää ruutua) yhtäkään miinaa.
+Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja arvoja, joista numeroidut arvot kertovat kuinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena on saada pääteltyä kaikki ruudukon miinojen paikat numeroarvojen avulla räjäyttämättä yhtäkään miinaa (eli avaamatta miinan sisältävää ruutua).
+
+Tällä hetkellä sovellukseen on toteutettu pelin perustoiminnallisuus, pelin voittamisen tarkistamista lukuunottamatta. Peliä voi pelata, "new game"-napista voi aloittaa uuden pelin ja mikäli pelatessa avaa ruudun, jossa oli miina, loppuu peli.
 
 ## Dokumentointi
 
@@ -20,3 +22,10 @@ Testikattavuusraportti luodaan komennolla:
 `mvn jacoco:report`
 
 Kattavuusraporttia voi tarkastella avaamalla tiedoston *target/site/jacoco/index.html* selaimella.
+
+
+### Pelin käynnistäminen komentoriviltä
+
+Minesweeper-pelin voi käynnistää komentoriviltä komennolla:
+
+`exec:java -Dexec.mainClass=minesweeper.ui.Main`

@@ -48,9 +48,18 @@ public class CellTest {
     }
     
     @Test
-    public void newCellIdNotOpened() {
+    public void newCellIsNotOpened() {
         Cell cell = new Cell(0,0);
         
-        assertEquals(true,cell.isOpened());
+        assertEquals(false,cell.isOpened());
+    }
+    
+    @Test
+    public void flagMethodWorksBothWays() {
+        Cell cell = new Cell(0,0);
+        cell.flag();
+        assertEquals(true,cell.isFlagged());
+        cell.flag();
+        assertEquals(false,cell.isFlagged());
     }
 }
