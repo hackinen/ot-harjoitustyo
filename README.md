@@ -26,6 +26,6 @@ Kattavuusraporttia voi tarkastella avaamalla tiedoston *target/site/jacoco/index
 
 ### Pelin käynnistäminen komentoriviltä
 
-Minesweeper-pelin voi käynnistää komentoriviltä komennolla:
+Minesweeper-pelin voi käynnistää komentoriviltä Minesweeper-projektikansiosta komennolla:
 
 `mvn compile exec:java -Dexec.mainClass=minesweeper.ui.Main`
