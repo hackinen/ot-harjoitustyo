@@ -9,3 +9,4 @@
 |26.3. | 0.5 | Käyttöliittymän ja sovelluslogiikan yhdistämisen aloittaminen |
 |29.3. | 5 | Käyttöliittymän ja sovelluslogiikan yhdistäminen, sovelluslogiikan parantelu, koodin refaktorointi |
 |30.3. | 1.5 | Koodin refaktorointi (käyttöliittymän ja sovelluslogiikan eriyttäminen paremmin omiin luokkiinsa), sovelluslogiikan parantelu, "new game"-napin toiminnallisuus, pelin häviämisen toiminnallisuus |
+|3.4. | 3 | Koodin refaktorointi, pelin voittamisen toiminnallisuus, Highscore- ja DAO-luokkien aloittaminen |
