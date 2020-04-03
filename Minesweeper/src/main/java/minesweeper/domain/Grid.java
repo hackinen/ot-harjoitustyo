@@ -133,9 +133,7 @@ public class Grid {
         openUntilNotEmpty(x-1,y-1);
     }
     
-    public void revealTheGrid(int x, int y) {
-        grid[x][y].setAsAngryMine();
-        
+    public void revealTheGrid() {
         for (int i=0; i<this.size; i++) {
             for (int j=0; j<this.size; j++) {
                 Cell cell=grid[i][j];
@@ -151,6 +149,26 @@ public class Grid {
                 
             }
         }
+    }
+    
+    public void setAngryMine(int x, int y) {
+        grid[x][y].setAsAngryMine();
+    }
+    
+    public boolean checkIfWon() {
+        boolean areThereUnopenedNumbers = false;
+        for (int x=0; x<size; x++) {
+            for (int y=0; y<size; y++) {
+                if (getCellValue(x,y)<9 && getCellValue(x,y)!=0 && !getCell(x,y).isOpened()) {
+                    areThereUnopenedNumbers=true;
+                }
+                if (areThereUnopenedNumbers) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
     }
     
     public Cell getCell(int x, int y) {

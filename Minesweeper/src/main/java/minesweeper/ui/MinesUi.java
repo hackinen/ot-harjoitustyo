@@ -27,6 +27,8 @@ public class MinesUi extends Application {
     private static int gridSize = 10;
     private static Button[][] buttons = new Button[gridSize][gridSize];
     private static GridPane gridPane;
+    private static HBox hbox;
+    private static Label text;
     private static Grid grid;
     
     //graphics
@@ -69,8 +71,13 @@ public class MinesUi extends Application {
         //layoyt of the game
         BorderPane layout = new BorderPane();
         Button newGameButton = new Button("new game");
+        text = new Label("");
         gridPane = new GridPane();
-        layout.setTop(newGameButton);
+        hbox = new HBox();
+        hbox.setSpacing(10);
+        layout.setTop(hbox);
+        hbox.getChildren().add(newGameButton);
+        hbox.getChildren().add(text);
         //new game
         newGame(gridSize);
         
@@ -93,6 +100,7 @@ public class MinesUi extends Application {
      public static void newGame(int size) {
         grid = new Grid(size);
         gridSize=size;
+        text.setText("");
         gridPane.getChildren().clear();
         //creating the grid and adding the buttons
         for (int x=0; x<gridSize; x++) {
@@ -139,6 +147,7 @@ public class MinesUi extends Application {
     }
     
     public static void update() {
+        
         for (int i=0; i<gridSize; i++) {
             for (int j=0; j<gridSize; j++) {
                 if (grid.cellIsOpened(i,j)) {
@@ -179,8 +188,10 @@ public class MinesUi extends Application {
                         case 9:
                             ImageView ivAngryMine = new ImageView(angryMine);
                             buttons[i][j].setGraphic(ivAngryMine);
-                            grid.revealTheGrid(i,j);
+                            grid.setAngryMine(i, j);
+                            grid.revealTheGrid();
                             showMines();
+                            text.setText("You lost the game :(");
                             return;
                         case 0:
                             buttons[i][j].setDisable(true);
@@ -198,6 +209,14 @@ public class MinesUi extends Application {
                 }
             }
         }
+        //checking if the player has won the game
+        if (grid.checkIfWon()) {
+            grid.revealTheGrid();
+            showMines();
+            text.setText("You won!");
+            return;
+        }
+        
         gridPane.requestFocus();
     }
     
