@@ -32,8 +32,9 @@ public class DAO {
     
    
     public void saveHighscore(double time, String name) {
+        createTables();
         try(Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
-
+            
             PreparedStatement s = db.prepareStatement("INSERT INTO Highscores "
                     + "(time,name) VALUES (?,?);");
             s.setDouble(1, time);
@@ -81,7 +82,11 @@ public class DAO {
             
             int i=0;
             while(rs.next()) {
-                top10[i] = rs.getString("id")+","+rs.getString("time")+","+rs.getString("name");
+                double gametime = rs.getDouble("time");
+                int minutes = (int) gametime/60;
+                long seconds = Math.round(gametime % 60);
+                String timeInMinsAndSecs = String.valueOf(minutes)+" m "+String.valueOf(seconds)+" sec";
+                top10[i] = rs.getString("id")+","+timeInMinsAndSecs+","+rs.getString("name");
                 i++;
             }
             

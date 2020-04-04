@@ -26,6 +26,9 @@ public class MinesUi extends Application {
     private static int height = 600;
     private static int gridSize = 10;
     private static Button[][] buttons = new Button[gridSize][gridSize];
+    private static Label top10;
+    private static Stage stage;
+    private static Scene highscoreScene;
     private static GridPane gridPane;
     private static HBox hbox;
     private static Label text;
@@ -51,7 +54,8 @@ public class MinesUi extends Application {
     }
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage1) throws Exception {
+        this.stage = stage1;
         //fetching the graphics
         one = new Image("file:graphics/one.png",20,20,true,true);
         two = new Image("file:graphics/two.png",20,20,true,true);
@@ -106,10 +110,10 @@ public class MinesUi extends Application {
         highscoreLayout.getChildren().add(new Label("HIGHSCORES"));
         highscoreLayout.getChildren().add(listOfScores);
         highscoreLayout.getChildren().add(goToMenu);
+        top10 = new Label(game.getTop10());
+        listOfScores.setCenter(top10);
         
-        //listOfScores.setCenter();
-        
-        Scene highscoreScene = new Scene(highscoreLayout);
+        highscoreScene = new Scene(highscoreLayout);
         
         
         
@@ -181,6 +185,9 @@ public class MinesUi extends Application {
     }
     
     public static void actionOnMouseClick(int x, int y) {
+        if (!game.isGameOnGoing()) {
+            game.startGame();
+        }
         game.openCell(x,y);
         update();
     }
@@ -233,7 +240,7 @@ public class MinesUi extends Application {
                             ImageView ivAngryMine = new ImageView(angryMine);
                             buttons[i][j].setGraphic(ivAngryMine);
                             game.setAngryMine(i, j);
-                            game.reveal();
+                            game.stopGame();
                             showMines();
                             text.setText("You lost :(");
                             return;
@@ -256,9 +263,37 @@ public class MinesUi extends Application {
         
         //checking if the player has won the game
         if (game.checkIfWon()) {
-            game.reveal();
+            game.stopGame();
             showMines();
             text.setText("You won!");
+            
+            
+            Stage st = new Stage();
+            VBox lay = new VBox();
+            Button saveButton = new Button("Save");
+            TextField textField = new TextField();
+            lay.setSpacing(10);
+            lay.getChildren().add(new Label("Your name:"));
+            lay.getChildren().add(textField);
+            lay.getChildren().add(saveButton);
+            Scene sc = new Scene(lay);
+            
+            saveButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    String name = textField.getText();
+                    game.saveHighscore(name);
+                    st.close();
+                    top10.setText(game.getTop10());
+                    stage.setScene(highscoreScene);
+                    newGame(gridSize);
+                }
+            }); 
+            
+            
+            st.setTitle("Save your score!");
+            st.setScene(sc);
+            st.show();
             return;
         }
         

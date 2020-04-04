@@ -12,12 +12,32 @@ package minesweeper.domain;
 public class MinesweeperGame {
     private Grid grid;
     private int gridSize;
-    private boolean gameIsGoingOn;
+    private Highscore highscore;
     
     public MinesweeperGame(int gridSize) {
         this.grid = new Grid(gridSize);
         this.gridSize=gridSize;
-        this.gameIsGoingOn = false;
+        this.highscore = new Highscore("highscore.db");
+    }
+    
+    public void startGame() {
+        highscore.startTiming();
+        grid.startGameSession();
+    }
+    
+    public void stopGame() {
+        grid.stopGameSession();
+        highscore.stopTiming();
+        reveal();
+    }
+    
+    public void saveHighscore(String name) {
+        double time = highscore.getGameTime();
+        highscore.saveHighscore(name);
+    }
+    
+    public String getTop10() {
+        return highscore.getTop10();
     }
     
     public void reveal() {
@@ -38,6 +58,10 @@ public class MinesweeperGame {
     
     public int getValueOfCell(int x, int y) {
         return grid.getCellValue(x, y);
+    }
+    
+    public boolean isGameOnGoing() {
+        return grid.isGameOnGoing();
     }
     
     public boolean cellIsOpened(int x, int y) {

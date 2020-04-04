@@ -43,11 +43,7 @@ public class HighscoreTest {
         dao.deleteTables();
     }
 
-    @Test
-    public void methodSetNameWorks() {
-        hs.setName("Titus");
-        assertEquals("Titus",hs.getName());
-    }
+   
     
     @Test
     public void getGameTimeMethodWorks() {
@@ -61,10 +57,9 @@ public class HighscoreTest {
     @Test
     public void methodSaveHighscoreWorks() {
         hs.startTiming();
-        hs.setName("Titus");
         hs.stopTiming();
         
-        hs.saveHighscore();
+        hs.saveHighscore("Titus");
         ArrayList<Double> list = dao.getHighscoresByName("Titus");
         
         Double time = hs.getGameTime();

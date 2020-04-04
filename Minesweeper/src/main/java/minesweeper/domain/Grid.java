@@ -21,7 +21,7 @@ public class Grid {
     public Grid(int size) {
         this.size = size;
         this.grid = new Cell[size][size];
-        this.gameOnGoing=true;
+        this.gameOnGoing=false;
         
         for (int i=0 ; i<size ; i++) {
             for (int j=0; j<size ; j++) {
@@ -103,7 +103,7 @@ public class Grid {
             getCell(x,y).open();
             
             if (getCellValue(x,y)==9) {
-                this.gameOnGoing=false;
+                stopGameSession();
             }
         }
     }
@@ -171,6 +171,14 @@ public class Grid {
     
     public boolean isGameOnGoing() {
         return this.gameOnGoing;
+    }
+    
+    public void startGameSession() {
+        this.gameOnGoing=true;
+    }
+    
+    public void stopGameSession() {
+        this.gameOnGoing=false;
     }
     
     public boolean cellIsOpened(int x, int y) {
