@@ -155,20 +155,10 @@ public class Grid {
         grid[x][y].setAsAngryMine();
     }
     
-    public boolean checkIfWon() {
-        boolean areThereUnopenedNumbers = false;
-        for (int x=0; x<size; x++) {
-            for (int y=0; y<size; y++) {
-                if (getCellValue(x,y)<9 && getCellValue(x,y)!=0 && !getCell(x,y).isOpened()) {
-                    areThereUnopenedNumbers=true;
-                }
-                if (areThereUnopenedNumbers) {
-                    return false;
-                }
-            }
-        }
-        
-        return true;
+    
+    
+    public Cell[][] getGrid() {
+        return this.grid;
     }
     
     public Cell getCell(int x, int y) {

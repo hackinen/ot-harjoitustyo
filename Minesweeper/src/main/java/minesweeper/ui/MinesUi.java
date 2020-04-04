@@ -29,7 +29,7 @@ public class MinesUi extends Application {
     private static GridPane gridPane;
     private static HBox hbox;
     private static Label text;
-    private static Grid grid;
+    private static MinesweeperGame game;
     
     //graphics
     private static Image one;
@@ -68,18 +68,50 @@ public class MinesUi extends Application {
         
         stage.setTitle("Minesweeper");
         
+        //layout of the main menu
+        BorderPane menu = new BorderPane();
+        Button playButton = new Button("Play");
+        Button highscoreButton = new Button("Highscores");
+        menu.setTop(playButton);
+        menu.setBottom(highscoreButton);
+        Scene scene = new Scene(menu);
+        
+        
         //layoyt of the game
         BorderPane layout = new BorderPane();
         Button newGameButton = new Button("new game");
+        Button backToMenuButton = new Button("menu");
         text = new Label("");
         gridPane = new GridPane();
         hbox = new HBox();
         hbox.setSpacing(10);
         layout.setTop(hbox);
         hbox.getChildren().add(newGameButton);
+        hbox.getChildren().add(backToMenuButton);
         hbox.getChildren().add(text);
         //new game
         newGame(gridSize);
+        layout.setCenter(gridPane);
+        Scene gameScene = new Scene(layout);
+        
+        
+        //layout of highscores
+        VBox highscoreLayout = new VBox();
+        BorderPane listOfScores = new BorderPane();
+        
+        Button goToMenu = new Button("Back to menu");
+        
+        
+        highscoreLayout.setSpacing(10);
+        highscoreLayout.getChildren().add(new Label("HIGHSCORES"));
+        highscoreLayout.getChildren().add(listOfScores);
+        highscoreLayout.getChildren().add(goToMenu);
+        
+        //listOfScores.setCenter();
+        
+        Scene highscoreScene = new Scene(highscoreLayout);
+        
+        
         
         //new game button eventHandler
         newGameButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -89,17 +121,29 @@ public class MinesUi extends Application {
             }
         });
         
-        layout.setCenter(gridPane);
-  
-        Scene scene = new Scene(layout);
+       
+        backToMenuButton.setOnAction((event) -> {
+            stage.setScene(scene);
+        });
+        
+        goToMenu.setOnAction((event) -> {
+            stage.setScene(scene);
+        });
+        
+        playButton.setOnAction((event) -> {
+            stage.setScene(gameScene);
+        });
+        
+        highscoreButton.setOnAction((event) -> {
+            stage.setScene(highscoreScene);
+        });
         
         stage.setScene(scene);
         stage.show();
     }
     
      public static void newGame(int size) {
-        grid = new Grid(size);
-        gridSize=size;
+        game = new MinesweeperGame(size);
         text.setText("");
         gridPane.getChildren().clear();
         //creating the grid and adding the buttons
@@ -121,14 +165,14 @@ public class MinesUi extends Application {
                     @Override
                     public void handle(MouseEvent event) {
                         MouseButton btn = event.getButton();
-                        if (grid.isGameOnGoing()) {
-                            if (btn==MouseButton.PRIMARY) {
-                                actionOnMouseClick(xf,yf);
-                            } 
-                            if (btn==MouseButton.SECONDARY) {
-                                actionOnRightMouseClick(xf,yf);
-                            }
+
+                        if (btn==MouseButton.PRIMARY) {
+                            actionOnMouseClick(xf,yf);
+                        } 
+                        if (btn==MouseButton.SECONDARY) {
+                            actionOnRightMouseClick(xf,yf);
                         }
+
                        
                     }
                 });
@@ -137,12 +181,12 @@ public class MinesUi extends Application {
     }
     
     public static void actionOnMouseClick(int x, int y) {
-        grid.openCell(x,y);
+        game.openCell(x,y);
         update();
     }
     
     public static void actionOnRightMouseClick(int x,int y) {
-        grid.getCell(x, y).flag();
+        game.flagCell(x,y);
         update();
     }
     
@@ -150,9 +194,9 @@ public class MinesUi extends Application {
         
         for (int i=0; i<gridSize; i++) {
             for (int j=0; j<gridSize; j++) {
-                if (grid.cellIsOpened(i,j)) {
+                if (game.cellIsOpened(i,j)) {
                     buttons[i][j].setDisable(true);
-                    switch (grid.getCellValue(i, j)) {
+                    switch (game.getValueOfCell(i,j)) {
                         case 1:
                             ImageView ivOne = new ImageView(one);
                             buttons[i][j].setGraphic(ivOne);
@@ -188,10 +232,10 @@ public class MinesUi extends Application {
                         case 9:
                             ImageView ivAngryMine = new ImageView(angryMine);
                             buttons[i][j].setGraphic(ivAngryMine);
-                            grid.setAngryMine(i, j);
-                            grid.revealTheGrid();
+                            game.setAngryMine(i, j);
+                            game.reveal();
                             showMines();
-                            text.setText("You lost the game :(");
+                            text.setText("You lost :(");
                             return;
                         case 0:
                             buttons[i][j].setDisable(true);
@@ -200,18 +244,19 @@ public class MinesUi extends Application {
                             break;
                     }
                 }
-                if (grid.getCell(i, j).isFlagged()) {
+                if (game.cellIsFlagged(i, j)) {
                     ImageView ivFlag = new ImageView(flag);
                     buttons[i][j].setGraphic(ivFlag);
                 }
-                if (!grid.getCell(i, j).isFlagged() && !grid.getCell(i, j).isOpened()) {
+                if (!game.cellIsFlagged(i, j) && !game.cellIsOpened(i,j)) {
                     buttons[i][j].setGraphic(null);
                 }
             }
         }
+        
         //checking if the player has won the game
-        if (grid.checkIfWon()) {
-            grid.revealTheGrid();
+        if (game.checkIfWon()) {
+            game.reveal();
             showMines();
             text.setText("You won!");
             return;
@@ -227,14 +272,14 @@ public class MinesUi extends Application {
                 
                 buttons[i][j].setDisable(true);
                 
-                if (grid.cellIsOpened(i,j)) {
+                if (game.cellIsOpened(i,j)) {
                     
-                    if (grid.getCellValue(i, j)==9 && !grid.getCell(i, j).isAngryMine()) {
+                    if (game.getValueOfCell(i,j)==9 && !game.cellIsAngryMine(i, j)) {
                         ImageView ivMine = new ImageView(mine);
                         buttons[i][j].setGraphic(ivMine);
                     }
                     
-                    if (grid.getCell(i, j).isFlaggedWrong()) {
+                    if (game.cellIsFlaggedWrong(i, j)) {
                         ImageView ivWrongFlag = new ImageView(wrongFlag);
                         buttons[i][j].setGraphic(ivWrongFlag);
                     }
