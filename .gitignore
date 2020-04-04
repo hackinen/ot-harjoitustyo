@@ -4,3 +4,6 @@
 /Minesweeper/target
 /Minesweeper/nbproject/
 /Minesweeper/bin/
+/Minesweeper/highscore.db
+/Minesweeper/test.db
+/Minesweeper/daotest.db
