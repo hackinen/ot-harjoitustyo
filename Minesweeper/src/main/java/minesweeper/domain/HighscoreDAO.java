@@ -11,17 +11,17 @@ import java.util.*;
  *
  * @author hiira
  */
-public class DAO {
+public class HighscoreDAO {
     private String dbname;
     
-    public DAO(String dbname) {
-        this.dbname=dbname;
+    public HighscoreDAO(String dbname) {
+        this.dbname = dbname;
         createTables();
     }
     
     //creates table(s) to the database
     public void createTables() {
-        try(Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
+        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             Statement s = db.createStatement();
             s.execute("CREATE TABLE IF NOT EXISTS Highscores "
                     + "(id INTEGER PRIMARY KEY, time DOUBLE, name TEXT);");
@@ -33,10 +33,10 @@ public class DAO {
    
     public void saveHighscore(double time, String name) {
         createTables();
-        try(Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
+        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             
             PreparedStatement s = db.prepareStatement("INSERT INTO Highscores "
-                    + "(time,name) VALUES (?,?);");
+                     + "(time,name) VALUES (?,?);");
             s.setDouble(1, time);
             s.setString(2, name);
             s.executeUpdate();
@@ -50,7 +50,7 @@ public class DAO {
     public ArrayList<Double> getHighscoresByName(String name) {
         ArrayList<Double> highscores = new ArrayList<>(); 
         
-        try (Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
+        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             
             PreparedStatement s = db.prepareStatement("SELECT time t FROM Highscores "
                     + "ORDER BY time;");
@@ -73,20 +73,20 @@ public class DAO {
     public String[] getTop10() {
         String[] top10 = new String[10];
         
-        try (Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
+        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             
             PreparedStatement s = db.prepareStatement("SELECT * FROM Highscores "
                     + "ORDER BY time LIMIT 10;");
             
             ResultSet rs = s.executeQuery();
             
-            int i=0;
-            while(rs.next()) {
+            int i = 0;
+            while (rs.next()) {
                 double gametime = rs.getDouble("time");
-                int minutes = (int) gametime/60;
+                int minutes = (int) gametime / 60;
                 long seconds = Math.round(gametime % 60);
-                String timeInMinsAndSecs = String.valueOf(minutes)+" m "+String.valueOf(seconds)+" sec";
-                top10[i] = rs.getString("id")+","+timeInMinsAndSecs+","+rs.getString("name");
+                String timeInMinsAndSecs = String.valueOf(minutes) + " m " + String.valueOf(seconds) + " sec";
+                top10[i] = rs.getString("id") + "," + timeInMinsAndSecs + "," + rs.getString("name");
                 i++;
             }
             
@@ -98,7 +98,7 @@ public class DAO {
     }
     
     public void deleteTables() {
-        try (Connection db = DriverManager.getConnection("jdbc:sqlite:"+this.dbname)) {
+        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             Statement s = db.createStatement();
             s.execute("DROP TABLE IF EXISTS Highscores");
         } catch (SQLException e) {
@@ -107,7 +107,7 @@ public class DAO {
     }
     
     public void printDatabase() {
-        try (Connection db = DriverManager.getConnection(("jdbc:sqlite:"+this.dbname))) {
+        try (Connection db = DriverManager.getConnection(("jdbc:sqlite:" + this.dbname))) {
             
             Statement s = db.createStatement();
             
@@ -115,7 +115,7 @@ public class DAO {
             System.out.println("Highscores");
             System.out.println("");
             while (r.next()) {
-                System.out.println(r.getInt("id")+"  "+r.getDouble("time")+" s  "+r.getString("name"));
+                System.out.println(r.getInt("id") + "  " + r.getDouble("time") + " s  " + r.getString("name"));
             }
             System.out.println("");
             

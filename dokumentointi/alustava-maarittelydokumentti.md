@@ -23,7 +23,7 @@ Sovelluksen käyttöliittymä koostuu mahdollisesti kahdesta eri näkymästä: v
 
 ## Perusversion tarjoama toiminallisuus
 
-Perusversiossa ohjelma aukeaa suoraan pelinäkymään (ilman valikkoa), jossa käyttäjän on mahdollista pelata peliä ja aloittaa peli alusta halutessaan.
+Perusversiossa ohjelma aukeaa suoraan pelinäkymään (ilman valikkoa), jossa käyttäjän on mahdollista pelata peliä ja aloittaa peli alusta halutessaan. (toteutettu)
 
 
 ## Jatkokehitysideoita
@@ -33,7 +33,7 @@ Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi 
 * valikon luominen ja ruudukon koon valinta
 * pelin teeman muuttaminen (ruutujen väri)
 * miinojen määrän muuttaminen
-* ajastin ja parhaiden tulosten tallentaminen
-* mahdollisesti vielä käyttäjäkirjautuminen tai nimimerkin luominen, jotta listauksessa näkyy tuloksen saanut pelaaja
+* ajastin ja parhaiden tulosten tallentaminen (toteutettu)
+* mahdollisesti vielä käyttäjäkirjautuminen tai nimimerkin luominen, jotta listauksessa näkyy tuloksen saanut pelaaja (nimimerkin tallentaminen voitettaessa toteutettu)
 
 Kehitysideoista vähintään valikon toteuttaminen pyritään saada kurssin loppuun mennessä toteutettua.

@@ -19,7 +19,7 @@ import minesweeper.domain.*;
  */
 public class HighscoreTest {
     private Highscore hs;
-    private DAO dao;
+    private HighscoreDAO dao;
     
     public HighscoreTest() {
     }
@@ -34,7 +34,7 @@ public class HighscoreTest {
     
     @Before
     public void setUp() {
-        dao = new DAO("test.db");
+        dao = new HighscoreDAO("test.db");
         hs = new Highscore("test.db");
     }
     

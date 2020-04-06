@@ -11,12 +11,10 @@ package minesweeper.domain;
  */
 public class MinesweeperGame {
     private Grid grid;
-    private int gridSize;
     private Highscore highscore;
     
     public MinesweeperGame(int gridSize) {
         this.grid = new Grid(gridSize);
-        this.gridSize=gridSize;
         this.highscore = new Highscore("highscore.db");
     }
     
@@ -53,7 +51,7 @@ public class MinesweeperGame {
     }
     
     public void openCell(int x, int y) {
-        grid.openCell(x,y);
+        grid.openCell(x, y);
     }
     
     public int getValueOfCell(int x, int y) {
@@ -82,10 +80,10 @@ public class MinesweeperGame {
     
     public boolean checkIfWon() {
         boolean areThereUnopenedNumbers = false;
-        for (int x=0; x<gridSize; x++) {
-            for (int y=0; y<gridSize; y++) {
-                if (grid.getCellValue(x,y)<9 && grid.getCellValue(x,y)!=0 && !grid.getCell(x,y).isOpened()) {
-                    areThereUnopenedNumbers=true;
+        for (int x = 0; x < grid.getGridSize(); x++) {
+            for (int y = 0; y < grid.getGridSize(); y++) {
+                if (grid.getCellValue(x, y) < 9 && grid.getCellValue(x, y) != 0 && !grid.getCell(x, y).isOpened()) {
+                    areThereUnopenedNumbers = true;
                 }
                 if (areThereUnopenedNumbers) {
                     return false;
@@ -95,4 +93,13 @@ public class MinesweeperGame {
         
         return true;
     }
+    
+    public Grid getGrid() {
+        return this.grid;
+    }
+    
+    public Highscore getHighscore() {
+        return this.highscore;
+    }
+    
 }

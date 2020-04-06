@@ -24,29 +24,29 @@ public class Cell {
     private int x, y;
     
     public Cell(int x, int y) {
-        this.x=x;
-        this.y=y;
+        this.x = x;
+        this.y = y;
         
-        this.opened=false;
-        this.flagged=false;
-        this.isAngryMine=false;
-        this.flaggedWrong=false;
+        this.opened = false;
+        this.flagged = false;
+        this.isAngryMine = false;
+        this.flaggedWrong = false;
     }
     
     public void flag() {
-        this.flagged=!flagged;
+        this.flagged = !flagged;
     }
     
     public void open() {
-        this.opened=true;
+        this.opened = true;
     }
     
     public void setMine() {
-        this.value=9;
+        this.value = 9;
     }
     
     public boolean isMine() {
-        if (value==9) {
+        if (value == 9) {
             return true;
         }
         return false;
@@ -69,7 +69,7 @@ public class Cell {
     }
     
     public void setFlaggedWrong() {
-        this.flaggedWrong=true;
+        this.flaggedWrong = true;
     }
     
     public int getValue() {
@@ -77,11 +77,14 @@ public class Cell {
     }
 
     public void setValue(int value) {
-        this.value=value;
+        if (value < 0 || value > 9 ) {
+            return;
+        }
+        this.value = value;
     }
     
     public void setAsAngryMine() {
-        this.isAngryMine=true;
+        this.isAngryMine = true;
     }
     
     

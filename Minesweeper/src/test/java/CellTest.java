@@ -17,6 +17,7 @@ import minesweeper.domain.Cell;
  * @author hiira
  */
 public class CellTest {
+    private Cell cell;
     
     public CellTest() {
     }
@@ -31,6 +32,7 @@ public class CellTest {
     
     @Before
     public void setUp() {
+        cell = new Cell(0,0);
     }
     
     @After
@@ -42,24 +44,55 @@ public class CellTest {
     //
     @Test
     public void newCellIsNotFlagged() {
-        Cell cell = new Cell(0,0);
-        
         assertEquals(false,cell.isFlagged());
     }
     
     @Test
     public void newCellIsNotOpened() {
-        Cell cell = new Cell(0,0);
-        
         assertEquals(false,cell.isOpened());
     }
     
     @Test
     public void flagMethodWorksBothWays() {
-        Cell cell = new Cell(0,0);
         cell.flag();
         assertEquals(true,cell.isFlagged());
         cell.flag();
         assertEquals(false,cell.isFlagged());
+    }
+    
+    @Test
+    public void methodOpenWorks() {
+        cell.open();
+        assertEquals(true,cell.isOpened());
+    }
+    
+    @Test
+    public void methodSetMineWorks() {
+        cell.setMine();
+        assertEquals(9,cell.getValue());
+    }
+    
+    @Test
+    public void methodSetAsAngryMineWorks() {
+        cell.setAsAngryMine();
+        assertEquals(true,cell.isAngryMine());
+    }
+    
+    @Test
+    public void methodSetFlaggedWrongWorks() {
+        cell.setFlaggedWrong();
+        assertEquals(true,cell.isFlaggedWrong());
+    }
+    
+    @Test
+    public void methodSetValueWorksWhenTheValueIsAllowed() {
+        cell.setValue(3);
+        assertEquals(3,cell.getValue());
+    }
+    
+    @Test
+    public void methodSetValueDoesNothingWhenValueIsNotAllowed() {
+        cell.setValue(10);
+        assertEquals(0,cell.getValue());
     }
 }

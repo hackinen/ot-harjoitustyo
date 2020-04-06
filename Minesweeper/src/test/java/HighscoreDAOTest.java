@@ -16,9 +16,9 @@ import minesweeper.domain.*;
  *
  * @author hiira
  */
-public class DAOTest {
+public class HighscoreDAOTest {
     
-    public DAOTest() {
+    public HighscoreDAOTest() {
     }
     
     @BeforeClass
@@ -31,18 +31,14 @@ public class DAOTest {
     
     @Before
     public void setUp() {
-        DAO dao = new DAO("daotest.db");
+        HighscoreDAO dao = new HighscoreDAO("daotest.db");
     }
     
     @After
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
     
   
 }

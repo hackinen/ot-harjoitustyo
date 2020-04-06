@@ -14,33 +14,32 @@ import java.util.Random;
  * @author hiira
  */
 public class Grid {
-    private int size;       //the size of the grid (square)
+    private int size = 10;       //the size of the grid (square)
     private Cell[][] grid;
     private boolean gameOnGoing;
     
     public Grid(int size) {
         this.size = size;
         this.grid = new Cell[size][size];
-        this.gameOnGoing=false;
         
-        for (int i=0 ; i<size ; i++) {
-            for (int j=0; j<size ; j++) {
-                grid[i][j]=new Cell(i,j);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                grid[i][j] = new Cell(i, j);
             }
         }
         
-        addMinesToGrid((size*size)/8);
+        addMinesToGrid((size * size) / 8);
         addValuesToGrid();
     }
     
     //constructor for testing the methods addMinesToGrid and addValuesToGrid
     public Grid() {
-        this.size=10;
-        this.grid=new Cell[size][size];
+        this.size = 10;
+        this.grid = new Cell[size][size];
         
-        for (int i=0 ; i<size ; i++) {
-            for (int j=0; j<size ; j++) {
-                grid[i][j]=new Cell(i,j);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                grid[i][j] = new Cell(i, j);
             }
         }
     }
@@ -51,7 +50,7 @@ public class Grid {
         HashSet<ArrayList<Integer>> mineLocations = new HashSet<>(); 
         
         while (true) {
-            if (mineLocations.size()==mines) {
+            if (mineLocations.size() == mines) {
                 break;
             }
             ArrayList list = new ArrayList<>();
@@ -69,12 +68,12 @@ public class Grid {
     }
     
     public void addValuesToGrid() {
-        for (int x=0 ; x<size ; x++) {
-            for (int y=0 ; y<size ; y++) {
+        for (int x = 0; x < size; x++) {
+            for (int y = 0; y < size; y++) {
                 if (!grid[x][y].isMine()) {
-                    int mines=isMine(x-1,y-1)+isMine(x-1,y)+isMine(x-1,y+1)+
-                        isMine(x,y-1)+isMine(x,y+1)+isMine(x+1,y-1)+isMine(x+1,y)
-                        + isMine(x+1,y+1);
+                    int mines = isMine(x - 1, y - 1) + isMine(x - 1, y) + isMine(x - 1, y + 1) + 
+                        isMine(x, y - 1) + isMine(x, y + 1) + isMine(x + 1, y - 1) + isMine(x + 1, y)
+                        + isMine(x + 1, y + 1);
                     grid[x][y].setValue(mines);
                 }
             }
@@ -82,7 +81,7 @@ public class Grid {
     }
     
     public int isMine(int x, int y) {
-        if(x<0 || y<0 || x>=size || y>=size) {
+        if (x < 0 || y < 0 || x >= size || y >= size) {
             return 0;
         } else if (grid[x][y].isMine()) {
             return 1;
@@ -92,51 +91,45 @@ public class Grid {
     }
     
     public void openCell(int x, int y) {
-        if (getCell(x,y).isFlagged()) {
+        if (getCell(x, y).isFlagged()) {
             return;
         }
-        if (getCellValue(x,y)==0) {
-            openUntilNotEmpty(x,y);
+        if (getCellValue(x, y) == 0) {
+            openUntilNotEmpty(x, y);
         }
         
-        if (getCellValue(x,y)>0 ) {
-            getCell(x,y).open();
+        if (getCellValue(x, y) > 0) {
+            getCell(x, y).open();
             
-            if (getCellValue(x,y)==9) {
+            if (getCellValue(x, y) == 9) {
                 stopGameSession();
             }
         }
     }
     
     public void openUntilNotEmpty(int x, int y) {
-        if (x<0 || y<0 || x>=size || y>=size) {
+        if (x < 0 || y < 0 || x >= size || y >= size || this.getCell(x, y).isOpened() || this.getCell(x, y).isFlagged()) {
             return;
         }
-        if (this.getCell(x,y).isOpened()) {
+        if (getCellValue(x, y) != 0 && getCellValue(x, y) < 9) {
+            getCell(x, y).open();
             return;
         }
-        if (this.getCell(x, y).isFlagged()) {
-            return;
-        }
-        if (getCellValue(x,y)!=0 && getCellValue(x, y)<9) {
-            getCell(x,y).open();
-            return;
-        }
-        getCell(x,y).open();
-        openUntilNotEmpty(x-1,y);
-        openUntilNotEmpty(x-1,y+1);
-        openUntilNotEmpty(x,y+1);
-        openUntilNotEmpty(x+1,y+1);
-        openUntilNotEmpty(x+1,y);
-        openUntilNotEmpty(x+1,y-1);
-        openUntilNotEmpty(x,y-1);
-        openUntilNotEmpty(x-1,y-1);
+        getCell(x, y).open();
+        openUntilNotEmpty(x - 1, y);
+        openUntilNotEmpty(x - 1, y + 1);
+        openUntilNotEmpty(x, y + 1);
+        openUntilNotEmpty(x + 1, y + 1);
+        openUntilNotEmpty(x + 1, y);
+        openUntilNotEmpty(x + 1, y - 1);
+        openUntilNotEmpty(x, y - 1);
+        openUntilNotEmpty(x - 1, y - 1);
     }
     
     public void revealTheGrid() {
-        for (int i=0; i<this.size; i++) {
-            for (int j=0; j<this.size; j++) {
-                Cell cell=grid[i][j];
+        for (int i = 0; i < this.size; i++) {
+            for (int j = 0; j < this.size; j++) {
+                Cell cell = grid[i][j];
                 
                 if (cell.isFlagged() && !cell.isMine()) {
                     cell.setFlaggedWrong();
@@ -161,6 +154,10 @@ public class Grid {
         return this.grid;
     }
     
+    public int getGridSize() {
+        return this.size;
+    }
+    
     public Cell getCell(int x, int y) {
         return grid[x][y];
     }
@@ -174,11 +171,11 @@ public class Grid {
     }
     
     public void startGameSession() {
-        this.gameOnGoing=true;
+        this.gameOnGoing = true;
     }
     
     public void stopGameSession() {
-        this.gameOnGoing=false;
+        this.gameOnGoing = false;
     }
     
     public boolean cellIsOpened(int x, int y) {
@@ -189,8 +186,8 @@ public class Grid {
     public String toString() {
         String str = "";
         
-        for (int i=0 ; i<size ; i++) {
-            for (int j=0 ; j<size; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 str = str + grid[i][j].getValue() + " ";
             }
             str = str + "\n";
