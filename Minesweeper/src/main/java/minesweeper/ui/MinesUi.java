@@ -26,7 +26,10 @@ public class MinesUi extends Application {
     private static int height = 600;
     private static int gridSize = 10;
     private static Button[][] buttons = new Button[gridSize][gridSize];
-    private static Label top10;
+    private static Label topSize10;
+    private static Label topSize16;
+    private static Label topSize20;
+    private static Label topSize30;
     private static Stage stage;
     private static Scene highscoreScene;
     private static GridPane gridPane;
@@ -56,6 +59,7 @@ public class MinesUi extends Application {
     @Override
     public void start(Stage stage1) throws Exception {
         this.stage = stage1;
+        
         //fetching the graphics
         one = new Image("file:graphics/one.png",20,20,true,true);
         two = new Image("file:graphics/two.png",20,20,true,true);
@@ -74,9 +78,19 @@ public class MinesUi extends Application {
         
         //layout of the main menu
         BorderPane menu = new BorderPane();
-        Button playButton = new Button("Play");
+        GridPane gameModes = new GridPane();
+        
+        Button playExtraSmallButton = new Button("Play 10 x 10");
+        Button playSmallButton = new Button("Play 16 x 16");
+        Button playMediumButton = new Button("Play 20 x 20");
+        Button playBigButton = new Button("Play 30 x 30");
+        gameModes.add(playExtraSmallButton, 1, 1);
+        gameModes.add(playSmallButton, 2, 1);
+        gameModes.add(playMediumButton, 1, 2);
+        gameModes.add(playBigButton, 2, 2);
+        
         Button highscoreButton = new Button("Highscores");
-        menu.setTop(playButton);
+        menu.setTop(gameModes);
         menu.setBottom(highscoreButton);
         Scene scene = new Scene(menu);
         
@@ -93,7 +107,7 @@ public class MinesUi extends Application {
         hbox.getChildren().add(newGameButton);
         hbox.getChildren().add(backToMenuButton);
         hbox.getChildren().add(text);
-        //new game
+        
         newGame(gridSize);
         layout.setCenter(gridPane);
         Scene gameScene = new Scene(layout);
@@ -101,20 +115,26 @@ public class MinesUi extends Application {
         
         //layout of highscores
         VBox highscoreLayout = new VBox();
-        BorderPane listOfScores = new BorderPane();
-        
+        GridPane listOfScores = new GridPane();
         Button goToMenu = new Button("Back to menu");
-        
         
         highscoreLayout.setSpacing(10);
         highscoreLayout.getChildren().add(new Label("HIGHSCORES"));
         highscoreLayout.getChildren().add(listOfScores);
         highscoreLayout.getChildren().add(goToMenu);
-        top10 = new Label(game.getTop10());
-        listOfScores.setCenter(top10);
+        
+        topSize10 = new Label(game.getTop10(10));
+        topSize16 = new Label(game.getTop10(16));
+        topSize20 = new Label(game.getTop10(20));
+        topSize30 = new Label(game.getTop10(30));
+        listOfScores.add(topSize10,1,1);
+        listOfScores.add(topSize16,2,1);
+        listOfScores.add(topSize20,1,2);
+        listOfScores.add(topSize30,2,2);
+        listOfScores.setHgap(10);
+        listOfScores.setVgap(10);
         
         highscoreScene = new Scene(highscoreLayout);
-        
         
         
         //new game button eventHandler
@@ -134,8 +154,40 @@ public class MinesUi extends Application {
             stage.setScene(scene);
         });
         
-        playButton.setOnAction((event) -> {
-            stage.setScene(gameScene);
+        playExtraSmallButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                stage.setScene(gameScene);
+            }
+        });
+        
+        playSmallButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gridSize = 16;
+                buttons = new Button[gridSize][gridSize];
+                newGame(gridSize);
+                stage.setScene(gameScene);
+            }
+        });
+        playMediumButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gridSize = 20;
+                buttons = new Button[gridSize][gridSize];
+                newGame(gridSize);
+                stage.setScene(gameScene);
+            }
+        });
+        
+        playBigButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gridSize = 30;
+                buttons = new Button[gridSize][gridSize];
+                newGame(gridSize);
+                stage.setScene(gameScene);
+            }
         });
         
         highscoreButton.setOnAction((event) -> {
@@ -282,9 +334,12 @@ public class MinesUi extends Application {
                 @Override
                 public void handle(ActionEvent event) {
                     String name = textField.getText();
-                    game.saveHighscore(name);
+                    game.saveHighscore(gridSize,name);
                     st.close();
-                    top10.setText(game.getTop10());
+                    topSize10.setText(game.getTop10(10));
+                    topSize16.setText(game.getTop10(16));
+                    topSize20.setText(game.getTop10(20));
+                    topSize30.setText(game.getTop10(30));
                     stage.setScene(highscoreScene);
                     newGame(gridSize);
                 }

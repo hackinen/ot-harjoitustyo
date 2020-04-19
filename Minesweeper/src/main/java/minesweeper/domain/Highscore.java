@@ -15,7 +15,6 @@ public class Highscore {
     public Highscore(String nameOfDatabase) {
         this.startTime = 0;
         this.endTime = 0;
-        
         this.dao = new HighscoreDAO(nameOfDatabase);
     }
     
@@ -37,14 +36,14 @@ public class Highscore {
         return gameTime;
     }
     
-    public void saveHighscore(String name) {
+    public void saveHighscore(int gridSize, String name) {
         double gametime = getGameTime();
-        dao.saveHighscore(gametime, name);
+        dao.saveHighscore(gridSize, gametime, name);
     }
     
-    public String getTop10() {
-        String[] top10 = dao.getTop10();
-        String results = "";
+    public String getTop10(int gridSize) {
+        String[] top10 = dao.getTop10(gridSize);
+        String results = gridSize + "x" + gridSize +": \n";
         for (int i = 0; i < top10.length; i++) {
             if (top10[i] == null) {
                 break;
@@ -55,9 +54,11 @@ public class Highscore {
             results += rank + " --- " + pieces[1] + " --- " + pieces[2] + "\n";
         }
         
+        results += "\n";
+        
         return results;
     }
-
+    
     public long getStartTime() {
         return startTime;
     }
@@ -65,8 +66,7 @@ public class Highscore {
     public long getEndTime() {
         return endTime;
     }
-
-
+    
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
@@ -74,6 +74,5 @@ public class Highscore {
     public void setEndTime(long endTime) {
         this.endTime = endTime;
     }
-    
     
 }

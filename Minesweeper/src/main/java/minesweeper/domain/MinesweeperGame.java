@@ -29,13 +29,13 @@ public class MinesweeperGame {
         reveal();
     }
     
-    public void saveHighscore(String name) {
+    public void saveHighscore(int gridSize, String name) {
         double time = highscore.getGameTime();
-        highscore.saveHighscore(name);
+        highscore.saveHighscore(gridSize, name);
     }
     
-    public String getTop10() {
-        return highscore.getTop10();
+    public String getTop10(int gridSize) {
+        return highscore.getTop10(gridSize);
     }
     
     public void reveal() {

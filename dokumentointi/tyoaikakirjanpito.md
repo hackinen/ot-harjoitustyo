@@ -13,4 +13,6 @@
 |4.4. | 7 | Koodin refaktorointi (MinesweeperGame-luokan luominen), Highscores- ja DAO-luokkien parantaminen, valikon luominen ja higscorejen seuraaminen ja talentaminen tietokantaan |
 |6.4. | 2 | Checkstylevirheiden korjaaminen ja testien tekeminen |
 | | 2 | Arkkitehtuurikuvaus |
-| yht | 28 | |
+| 17.4 | 3 | Useamman eri peliruudukon koon mahdollisuus ja lisääminen myös käyttöliittymään, Highscore- ja HighscoreDAO -luokkien muokkaaminsen aloitus niin, että jokaiselle erikokoiselle kentälle on oma listauksensa |
+| 19.4. | 2 | Highscore- ja HighscoreDAO -luokkien muokkaaminen loppuun, testien tekeminen, koodin refaktorointi |
+| yht | 33 | |

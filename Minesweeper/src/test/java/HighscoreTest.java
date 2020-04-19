@@ -55,16 +55,32 @@ public class HighscoreTest {
     }
     
     @Test
-    public void methodSaveHighscoreWorks() {
+    public void methodsSaveHighscoreAndGetTop10BothWork() {
+        dao.deleteTables();
+        dao.createTables();
+        
         hs.startTiming();
         hs.stopTiming();
         
-        hs.saveHighscore("Titus");
-        ArrayList<Double> list = dao.getHighscoresByName("Titus");
+        hs.saveHighscore(10,"Titus");
+       
+        double time = hs.getGameTime();
         
-        Double time = hs.getGameTime();
+        int minutes = (int) time / 60;
+        long seconds = Math.round(time % 60);
+        String timeInMinsAndSecs = String.valueOf(minutes) + " m " + String.valueOf(seconds) + " sec";
         
-        assertEquals(time,list.get(0));
+        String[] pieces = hs.getTop10(10).split("\n");
+        String score = pieces[1];
         
+        assertEquals("1 --- " + timeInMinsAndSecs + " --- Titus",score); 
+    }
+    
+    @Test
+    public void methodGetTop10ShowsNoHighscoresWhenEmpty() {
+        dao.deleteTables();
+        dao.createTables();
+        
+        assertEquals("10x10: \n\n",hs.getTop10(10)); 
     }
 }

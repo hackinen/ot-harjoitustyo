@@ -24,21 +24,22 @@ public class HighscoreDAO {
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             Statement s = db.createStatement();
             s.execute("CREATE TABLE IF NOT EXISTS Highscores "
-                    + "(id INTEGER PRIMARY KEY, time DOUBLE, name TEXT);");
+                    + "(id INTEGER PRIMARY KEY, gridsize INTEGER, time DOUBLE, name TEXT);");
         } catch (SQLException e) {
             getErrorMessages(e);
         }
     }
     
    
-    public void saveHighscore(double time, String name) {
+    public void saveHighscore(int gridsize, double time, String name) {
         createTables();
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             
             PreparedStatement s = db.prepareStatement("INSERT INTO Highscores "
-                     + "(time,name) VALUES (?,?);");
-            s.setDouble(1, time);
-            s.setString(2, name);
+                     + "(gridsize,time,name) VALUES (?,?,?);");
+            s.setInt(1, gridsize);
+            s.setDouble(2, time);
+            s.setString(3, name);
             s.executeUpdate();
 
             
@@ -47,37 +48,15 @@ public class HighscoreDAO {
         }
     }
     
-    public ArrayList<Double> getHighscoresByName(String name) {
-        ArrayList<Double> highscores = new ArrayList<>(); 
-        
-        try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
-            
-            PreparedStatement s = db.prepareStatement("SELECT time t FROM Highscores "
-                    + "ORDER BY time;");
-            
-            ResultSet rs = s.executeQuery();
-            
-            while (rs.next()) {
-                highscores.add(rs.getDouble("t"));
-            }
-            
-        } catch (SQLException e) {
-            getErrorMessages(e);
-        }
-        
-        return highscores;
-    }
-    
-    
-    
-    public String[] getTop10() {
+    public String[] getTop10(int gridsize) {
         String[] top10 = new String[10];
         
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             
             PreparedStatement s = db.prepareStatement("SELECT * FROM Highscores "
-                    + "ORDER BY time LIMIT 10;");
+                    + "WHERE gridsize=? ORDER BY time LIMIT 10;");
             
+            s.setInt(1, gridsize);
             ResultSet rs = s.executeQuery();
             
             int i = 0;
@@ -115,7 +94,7 @@ public class HighscoreDAO {
             System.out.println("Highscores");
             System.out.println("");
             while (r.next()) {
-                System.out.println(r.getInt("id") + "  " + r.getDouble("time") + " s  " + r.getString("name"));
+                System.out.println(r.getInt("id") + "  " + r.getInt("gridsize") + "  " + r.getDouble("time") + " s  " + r.getString("name"));
             }
             System.out.println("");
             
