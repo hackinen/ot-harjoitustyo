@@ -61,18 +61,18 @@ public class MinesUi extends Application {
         this.stage = stage1;
         
         //fetching the graphics
-        one = new Image("file:graphics/one.png",20,20,true,true);
-        two = new Image("file:graphics/two.png",20,20,true,true);
-        three = new Image("file:graphics/three.png",20,20,true,true);
-        four = new Image("file:graphics/four.png",20,20,true,true);
-        five = new Image("file:graphics/five.png",20,20,true,true);
-        six = new Image("file:graphics/six.png",20,20,true,true);
-        seven = new Image("file:graphics/seven.png",20,20,true,true);
-        eight = new Image("file:graphics/eight.png",20,20,true,true);
-        flag = new Image("file:graphics/flag.png",20,20,true,true);
-        wrongFlag = new Image("file:graphics/wrongFlag.png",20,20,true,true);
-        mine = new Image("file:graphics/mine.png",20,20,true,true);
-        angryMine = new Image("file:graphics/angryMine.png",20,20,true,true);
+        one = new Image("/graphics/one.png",20,20,true,true);
+        two = new Image("/graphics/two.png",20,20,true,true);
+        three = new Image("/graphics/three.png",20,20,true,true);
+        four = new Image("/graphics/four.png",20,20,true,true);
+        five = new Image("/graphics/five.png",20,20,true,true);
+        six = new Image("/graphics/six.png",20,20,true,true);
+        seven = new Image("/graphics/seven.png",20,20,true,true);
+        eight = new Image("/graphics/eight.png",20,20,true,true);
+        flag = new Image("/graphics/flag.png",20,20,true,true);
+        wrongFlag = new Image("/graphics/wrongFlag.png",20,20,true,true);
+        mine = new Image("/graphics/mine.png",20,20,true,true);
+        angryMine = new Image("/graphics/angryMine.png",20,20,true,true);
         
         stage.setTitle("Minesweeper");
         

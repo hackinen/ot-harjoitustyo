@@ -3,7 +3,7 @@ Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja
 
 ## Tämänhetkinen eteneminen
 
-Tällä hetkellä sovellukseen on toteutettu pelin perustoiminnallisuus, alkeellinen valikko sekä parhaiden tulosten tallentaminen sekä niiden katseleminen Highscores-näkymässä. Peliä voi pelata, "new game"-napista voi aloittaa uuden pelin ja mikäli pelatessa avaa ruudun, jossa oli miina, loppuu peli. Jos pelin voittaa, avautuu ikkunna, johon voi syöttää nimimerkkinsä ja sovellus tallentaa pelituloksen tietokantaan. Tällä hetkellä peli kysyy nimimerkkiä voitettaessa, vaikka ei pääsisikään top 10 -listalle, mikä on tarkoitus muuttaa seuraavilla viikoilla. 
+Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, josta voi valita haluamansa vaikeustason sekä parhaiden tulosten tallentaminen kentän koon mukaan ja niiden katseleminen Highscores-näkymässä. Pelitoiminnallisuus toimii kaikissa kentissä, "new game"-napista voi aloittaa uuden (vastaavan kokoisen) pelin ja mikäli pelatessa avaa ruudun, jossa oli miina, loppuu peli. Jos pelin voittaa, avautuu ikkunna, johon voi syöttää nimimerkkinsä ja sovellus tallentaa pelituloksen tietokantaan.
 
 ## Dokumentointi
 
@@ -14,7 +14,19 @@ Tällä hetkellä sovellukseen on toteutettu pelin perustoiminnallisuus, alkeell
 
 [Työaikakirjanpito](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
+## Releaset
+
 ## Komentorivitoiminnot
+
+### Suoritettavan jarin generointi
+
+Komento
+
+`mvn package`
+
+generoi hakemistoon *target* suoritettavan jar-tiedoston *Minesweeper-1.0-SNAPSHOT.jar*, joka voidaan suorittaa komennolla
+
+`java -jar Minesweeper-1.0-SNAPSHOT.jar`
 
 
 ### Pelin käynnistäminen komentoriviltä

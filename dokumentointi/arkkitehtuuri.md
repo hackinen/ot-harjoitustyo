@@ -33,3 +33,16 @@ Sovelluslogiikan muodostavat luokat MinesweeperGame, Grid, Cell, Highscore ja Hi
 <img src="https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/misc/luokkakaavio.png" width="750">
 
 Pelin toiminnallisuudesta vastaa luokka MinesweeperGame, joka suorittaa pelin toiminnot oliomuuttujiensa grid ja highscore avulla. Jokahetkisen pelitilanteen tallentamisesta huolehtivat luokat Grid ja Cell: Grid muodostuu useista Cell-olioista. Luokat Highscore ja HighscoreDAO vastaavat taas parhaiden tulosten seurannasta ja ajastamisesta (Highscore) sekä tietojen tallentamisesta tietokantaan (HighscoreDAO).
+
+
+
+
+## Toiminnallisuudesta
+
+### Voitetun pelin tallentaminen
+
+Kun käyttäjä on voittanut pelin, syöttänyt nimimerkkinsä ja painaa "save"-nappia (ohjelmakoodissa nimellä saveButton), etenee sovelluksen kontrolli seuraavalla tavalla:
+
+<img src="https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/misc/sekvenssikaavio.jpg" width="750">
+
+Yllä olevassa sekvenssikaaviossa on siis esitelty tilanne, jossa käyttäjä *Iira* pelaa 10x10-kokoisen pelikentän ajassa 60 sekunttia ja aiempi tietokanta on tyhjä. 
