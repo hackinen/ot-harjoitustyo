@@ -15,4 +15,6 @@
 | | 2 | Arkkitehtuurikuvaus |
 | 17.4 | 3 | Useamman eri peliruudukon koon mahdollisuus ja lisääminen myös käyttöliittymään, Highscore- ja HighscoreDAO -luokkien muokkaaminsen aloitus niin, että jokaiselle erikokoiselle kentälle on oma listauksensa |
 | 19.4. | 2 | Highscore- ja HighscoreDAO -luokkien muokkaaminen loppuun, testien tekeminen, koodin refaktorointi |
-| yht | 33 | |
+| 20.4 | 3 | sekvenssikaavio uuden highscoren lisäämisestä, testejä, refaktorointi|
+| 21.4 | 2 | testien tekeminen, checkstyle |
+| yht | 38 | |

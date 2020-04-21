@@ -16,6 +16,8 @@ Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, jos
 
 ## Releaset
 
+[Viikko 5](https://github.com/hackinen/ot-harjoitustyo/releases)
+
 ## Komentorivitoiminnot
 
 ### Suoritettavan jarin generointi
