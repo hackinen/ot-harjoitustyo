@@ -199,7 +199,7 @@ public class MinesUi extends Application {
     }
     
      public static void newGame(int size) {
-        game = new MinesweeperGame(size);
+        game = new MinesweeperGame(size, "highscore.db");
         text.setText("");
         gridPane.getChildren().clear();
         //creating the grid and adding the buttons

@@ -77,7 +77,7 @@ public class Cell {
     }
 
     public void setValue(int value) {
-        if (value < 0 || value > 9 ) {
+        if (value < 0 || value > 9) {
             return;
         }
         this.value = value;

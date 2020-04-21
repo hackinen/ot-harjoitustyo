@@ -43,7 +43,7 @@ public class Highscore {
     
     public String getTop10(int gridSize) {
         String[] top10 = dao.getTop10(gridSize);
-        String results = gridSize + "x" + gridSize +": \n";
+        String results = gridSize + "x" + gridSize + ": \n";
         for (int i = 0; i < top10.length; i++) {
             if (top10[i] == null) {
                 break;
@@ -57,6 +57,10 @@ public class Highscore {
         results += "\n";
         
         return results;
+    }
+    
+    public HighscoreDAO getDAO() {
+        return this.dao;
     }
     
     public long getStartTime() {

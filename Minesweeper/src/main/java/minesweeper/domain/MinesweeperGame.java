@@ -13,9 +13,9 @@ public class MinesweeperGame {
     private Grid grid;
     private Highscore highscore;
     
-    public MinesweeperGame(int gridSize) {
+    public MinesweeperGame(int gridSize, String dbname) {
         this.grid = new Grid(gridSize);
-        this.highscore = new Highscore("highscore.db");
+        this.highscore = new Highscore(dbname);
     }
     
     public void startGame() {

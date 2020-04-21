@@ -52,9 +52,7 @@ public class HighscoreDAO {
         String[] top10 = new String[10];
         
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
-            
-            PreparedStatement s = db.prepareStatement("SELECT * FROM Highscores "
-                    + "WHERE gridsize=? ORDER BY time LIMIT 10;");
+            PreparedStatement s = db.prepareStatement("SELECT * FROM Highscores WHERE gridsize=? ORDER BY time LIMIT 10;");
             
             s.setInt(1, gridsize);
             ResultSet rs = s.executeQuery();
@@ -62,9 +60,7 @@ public class HighscoreDAO {
             int i = 0;
             while (rs.next()) {
                 double gametime = rs.getDouble("time");
-                int minutes = (int) gametime / 60;
-                long seconds = Math.round(gametime % 60);
-                String timeInMinsAndSecs = String.valueOf(minutes) + " m " + String.valueOf(seconds) + " sec";
+                String timeInMinsAndSecs = convertToMinutesAndSeconds(gametime);
                 top10[i] = rs.getString("id") + "," + timeInMinsAndSecs + "," + rs.getString("name");
                 i++;
             }
@@ -74,6 +70,13 @@ public class HighscoreDAO {
         }
         
         return top10;
+    }
+    
+    public String convertToMinutesAndSeconds(double gametime) {
+        int minutes = (int) gametime / 60;
+        long seconds = Math.round(gametime % 60);
+        String timeInMinsAndSecs = String.valueOf(minutes) + " m " + String.valueOf(seconds) + " sec";
+        return timeInMinsAndSecs;        
     }
     
     public void deleteTables() {
