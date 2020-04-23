@@ -157,6 +157,9 @@ public class MinesUi extends Application {
         playExtraSmallButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                gridSize = 10;
+                buttons = new Button[gridSize][gridSize];
+                newGame(gridSize);
                 stage.setScene(gameScene);
             }
         });
