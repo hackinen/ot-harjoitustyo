@@ -18,6 +18,7 @@ Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, jos
 ## Releaset
 
 [Viikko 5](https://github.com/hackinen/ot-harjoitustyo/releases)
+[Viikko 6](https://github.com/hackinen/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
 
