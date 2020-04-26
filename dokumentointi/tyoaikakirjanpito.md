@@ -17,4 +17,5 @@
 | 19.4. | 2 | Highscore- ja HighscoreDAO -luokkien muokkaaminen loppuun, testien tekeminen, koodin refaktorointi |
 | 20.4 | 3 | sekvenssikaavio uuden highscoren lisäämisestä, testejä, refaktorointi|
 | 21.4 | 2 | testien tekeminen, checkstyle |
-| yht | 38 | |
+| 25.4. | 8 | koodin refaktorointia, miinojen ja lippujen määrän seurannan toteuttaminen pelitilanteeseen, ylimääräisen koodin poistamista, testien tekemistä, javadocin tekeminen pakkauksen minesweeper.domain luokkiin |
+| yht | 46 | |

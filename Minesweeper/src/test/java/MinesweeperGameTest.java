@@ -139,4 +139,128 @@ public class MinesweeperGameTest {
         
         assertEquals(mines.getGrid().getCell(0, 0).getValue(),mines.getValueOfCell(0, 0));
     }
+    
+    @Test
+    public void methodCheckIfWonWorks() {
+        assertTrue(!mines.checkIfWon());
+    }
+    
+    @Test
+    public void checkIfWonReturnsTrueWhenAllNumberedCellsAreOpened() {
+        Grid g = mines.getGrid();
+        
+        for (int i = 0; i < g.getGridSize() ; i++) {
+            for (int j = 0; j < g.getGridSize() ; j++) {
+                if (g.getCellValue(i, j) < 9 && g.getCellValue(i, j) > 0) {
+                    g.openCell(i, j);
+                }
+            }
+        }
+        
+        assertTrue(mines.checkIfWon());
+    }
+    
+    @Test
+    public void getNumberOfFlagsReturnsZeroWhenNoFlags() {
+        assertEquals(0,mines.getNumberOfFlags());
+    }
+    
+    @Test
+    public void getNumberOfFlagsReturnsTheCorrectNumberOfFlags() {
+        mines.getGrid().getCell(0, 0).flag();
+        
+        assertEquals(1,mines.getNumberOfFlags());
+    }
+    
+    @Test
+    public void getNumberOfMinesReturnsTheCorrectNumberOfMines() {
+        int size = mines.getGrid().getGridSize();
+        assertEquals((size*size)/8, mines.getNumberOfMines());
+    }
+    
+    @Test
+    public void gameIsNotOnGoingBeforeStartingTheGame() {
+        assertTrue(!mines.isGameOnGoing());
+    }
+    
+    @Test
+    public void gameIsOnGoingWhenTheGameHasStarted() {
+        mines.startGame();
+        assertTrue(mines.isGameOnGoing());
+    }
+    
+    @Test
+    public void methodCellIsOpenedWorksTest1() {
+        mines.getGrid().openCell(0, 0);
+        assertTrue(mines.cellIsOpened(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsOpenedWorksTest2() {
+        assertFalse(mines.cellIsOpened(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsFlaggedReturnsTrueWhenCellIsFlagged() {
+        mines.getGrid().getCell(0, 0).flag();
+        assertTrue(mines.cellIsFlagged(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsFlaggedReturnsFalseWhenCellIsNotFlagged() {
+        assertTrue(!mines.cellIsFlagged(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsAngryMineReturnsTrueWhenCellIsSetAsAnAngryMine() {
+        mines.getGrid().getCell(0, 0).setAsAngryMine();
+        assertTrue(mines.cellIsAngryMine(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsAngryMineReturnsFalseWhenCellIsNotSetAsAnAngryMine() {
+        assertTrue(!mines.cellIsAngryMine(0, 0));
+    }
+    
+    @Test
+    public void methodCellIsFlaggedWrongReturnsFalseWhenAMineIsFlagged() {
+        Cell cell;
+        int x=0;
+        int y=0;
+        
+        for (int i=0; i<mines.getGrid().getGridSize(); i++) {
+            for (int j=0; j<mines.getGrid().getGridSize(); j++) {
+                if (mines.getGrid().getCellValue(i, j) == 9) {
+                    x=i;
+                    y=j;
+                    break;
+                }
+            }
+        }
+        mines.flagCell(x, y);
+        mines.reveal();
+        assertTrue(!mines.cellIsFlaggedWrong(x, y));
+
+    }
+    
+    @Test
+    public void methodCellIsFlaggedWrongReturnsTrueWhenANumberIsFlagged() {
+        Cell cell;
+        int x=0;
+        int y=0;
+        
+        for (int i=0; i<mines.getGrid().getGridSize(); i++) {
+            for (int j=0; j<mines.getGrid().getGridSize(); j++) {
+                if (mines.getGrid().getCellValue(i, j) != 9 && mines.getGrid().getCellValue(i, j) != 0) {
+                    x=i;
+                    y=j;
+                    break;
+                }
+            }
+        }
+        mines.flagCell(x, y);
+        mines.reveal();
+        assertTrue(mines.cellIsFlaggedWrong(x, y));
+
+    }
 }

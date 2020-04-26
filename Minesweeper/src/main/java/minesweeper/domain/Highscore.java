@@ -12,22 +12,34 @@ public class Highscore {
     private long startTime;
     private long endTime;
     
+    /**
+     * Constructor: creates the dao-object (that creates the database) with the name given as a parameter
+     * @param nameOfDatabase the name of the database that will store all the highscores
+     */
     public Highscore(String nameOfDatabase) {
         this.startTime = 0;
         this.endTime = 0;
         this.dao = new HighscoreDAO(nameOfDatabase);
     }
     
-   
-    
+    /**
+     * Starts the timing of the game
+     */
     public void startTiming() {
         this.startTime = System.nanoTime();
     }
     
+    /**
+     * Stops the timing of the game
+     */
     public void stopTiming() {
         this.endTime = System.nanoTime();
     }
     
+    /**
+     * Returns the time that went into the game session
+     * @return double time (in seconds)
+     */
     public double getGameTime() {
         long wholeTime = this.endTime - this.startTime;
         
@@ -36,11 +48,21 @@ public class Highscore {
         return gameTime;
     }
     
+    /**
+     * Saves the newly won game's highscore to the database with the given name
+     * @param gridSize the size of the game that was won
+     * @param name the name of the player
+     */
     public void saveHighscore(int gridSize, String name) {
         double gametime = getGameTime();
         dao.saveHighscore(gridSize, gametime, name);
     }
     
+    /**
+     * Returns the top 10 best highscores of the gamemode that's size is gridSize * gridSize
+     * @param gridSize the size of the game
+     * @return String that contains the top 10 results
+     */
     public String getTop10(int gridSize) {
         String[] top10 = dao.getTop10(gridSize);
         String results = gridSize + "x" + gridSize + ": \n";

@@ -32,7 +32,7 @@ public class CellTest {
     
     @Before
     public void setUp() {
-        cell = new Cell(0,0);
+        cell = new Cell();
     }
     
     @After

@@ -14,12 +14,17 @@ import java.util.*;
 public class HighscoreDAO {
     private String dbname;
     
+    /**
+     * Contstructor: creates the tables in the database 
+     * @param dbname the name of the database
+     */
     public HighscoreDAO(String dbname) {
         this.dbname = dbname;
         createTables();
     }
     
-    //creates table(s) to the database
+    /* Creates table(s) to the database if they do not exist already
+    */
     public void createTables() {
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             Statement s = db.createStatement();
@@ -30,7 +35,12 @@ public class HighscoreDAO {
         }
     }
     
-   
+   /**
+    * Saves a new highscore to the database
+    * @param gridsize the size of the grid
+    * @param time the time that went into the game
+    * @param name the name of the player
+    */
     public void saveHighscore(int gridsize, double time, String name) {
         createTables();
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
@@ -48,6 +58,11 @@ public class HighscoreDAO {
         }
     }
     
+    /**
+     * Returns a String-array of the top 10 highscores in the given gamemode (gridsize)
+     * @param gridsize
+     * @return String[] containing the highscores
+     */
     public String[] getTop10(int gridsize) {
         String[] top10 = new String[10];
         
@@ -72,6 +87,11 @@ public class HighscoreDAO {
         return top10;
     }
     
+    /**
+     * Method for converting the given time to proper (String) format
+     * @param gametime the gametime in seconds
+     * @return String in time format "x m y sec"
+     */
     public String convertToMinutesAndSeconds(double gametime) {
         int minutes = (int) gametime / 60;
         long seconds = Math.round(gametime % 60);
@@ -79,6 +99,9 @@ public class HighscoreDAO {
         return timeInMinsAndSecs;        
     }
     
+    /**
+     * Deletes the tables from the database, if tables exist
+     */
     public void deleteTables() {
         try (Connection db = DriverManager.getConnection("jdbc:sqlite:" + this.dbname)) {
             Statement s = db.createStatement();
@@ -88,26 +111,9 @@ public class HighscoreDAO {
         }
     }
     
-    public void printDatabase() {
-        try (Connection db = DriverManager.getConnection(("jdbc:sqlite:" + this.dbname))) {
-            
-            Statement s = db.createStatement();
-            
-            ResultSet r = s.executeQuery("SELECT * FROM Highscores");
-            System.out.println("Highscores");
-            System.out.println("");
-            while (r.next()) {
-                System.out.println(r.getInt("id") + "  " + r.getInt("gridsize") + "  " + r.getDouble("time") + " s  " + r.getString("name"));
-            }
-            System.out.println("");
-            
-            
-        } catch (SQLException e) {
-            getErrorMessages(e);
-        }
-    }
-   
-    
+    /*
+     * Method for error messages
+     */
     public void getErrorMessages(SQLException e) {
         do {
             System.err.println("Viesti: " + e.getMessage());

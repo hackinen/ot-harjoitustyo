@@ -223,19 +223,31 @@ public class GridTest {
     }
     
     @Test
-    public void toStringWorks() {
-        String str = "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n"
-                + "0 0 0 0 0 0 0 0 0 0 \n";
+    public void methodRevealTheGridNoticesAllWronglyFlaggedCells() {
+       grid.getCell(0,0).flag();
+       grid.revealTheGrid();
+       
+       assertTrue(grid.getCell(0, 0).isFlaggedWrong());
+       assertTrue(!grid.getCell(1, 0).isFlaggedWrong());
+    }
+    
+    @Test
+    public void getNumberOfMinesReturnsTheCorrectNumber() {
+        Grid g = new Grid(10);
+        assertEquals((10 * 10) / 8,g.getNumberOfMines());
+    }
+    
+    @Test
+    public void getNumberOfFlaggedCellsReturnsZeroWhenNoFlaggedCells() {
+        assertEquals(0,grid.getNumberOfFlaggedCells());
+    }
+    
+    @Test
+    public void getNumberOfFlaggedCellsReturnsTheCorrectNumber() {
+        grid.getCell(0, 0).flag();
+        grid.getCell(2, 3).flag();
         
-        assertEquals(str,grid.toString());
+        assertEquals(2,grid.getNumberOfFlaggedCells());
     }
     
 }

@@ -10,6 +10,7 @@ import minesweeper.domain.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -76,10 +77,17 @@ public class MinesUi extends Application {
         
         stage.setTitle("Minesweeper");
         
-        //layout of the main menu
+        
+        //MAIN MENU
         BorderPane menu = new BorderPane();
         GridPane gameModes = new GridPane();
         
+        //setting some space between and around the buttons
+        gameModes.setVgap(10);
+        gameModes.setHgap(10);
+        gameModes.setPadding(new Insets(10,10,10,10));
+        
+        //creating and adding the gamebuttons
         Button playExtraSmallButton = new Button("Play 10 x 10");
         Button playSmallButton = new Button("Play 16 x 16");
         Button playMediumButton = new Button("Play 20 x 20");
@@ -89,13 +97,19 @@ public class MinesUi extends Application {
         gameModes.add(playMediumButton, 1, 2);
         gameModes.add(playBigButton, 2, 2);
         
+        //Highscore-button in the center and setting some space around it
         Button highscoreButton = new Button("Highscores");
+        BorderPane centerHighscore = new BorderPane();
+        centerHighscore.setCenter(highscoreButton);
+        centerHighscore.setPadding(new Insets(10,0,10,0));
+        
+        //The final layout
         menu.setTop(gameModes);
-        menu.setBottom(highscoreButton);
+        menu.setBottom(centerHighscore);
         Scene scene = new Scene(menu);
         
         
-        //layoyt of the game
+        //LAYOUT OF THE GAMEMODE
         BorderPane layout = new BorderPane();
         Button newGameButton = new Button("new game");
         Button backToMenuButton = new Button("menu");
@@ -113,7 +127,7 @@ public class MinesUi extends Application {
         Scene gameScene = new Scene(layout);
         
         
-        //layout of highscores
+        //LAYOUT OF HIGHSCORES
         VBox highscoreLayout = new VBox();
         GridPane listOfScores = new GridPane();
         Button goToMenu = new Button("Back to menu");
@@ -133,6 +147,7 @@ public class MinesUi extends Application {
         listOfScores.add(topSize30,2,2);
         listOfScores.setHgap(10);
         listOfScores.setVgap(10);
+        listOfScores.setPadding(new Insets(10,10,10,10));
         
         highscoreScene = new Scene(highscoreLayout);
         
@@ -203,7 +218,7 @@ public class MinesUi extends Application {
     
      public static void newGame(int size) {
         game = new MinesweeperGame(size, "highscore.db");
-        text.setText("");
+        text.setText("mines: " + game.getNumberOfMines() + "\nflags: 0");
         gridPane.getChildren().clear();
         //creating the grid and adding the buttons
         for (int x=0; x<gridSize; x++) {
@@ -308,6 +323,7 @@ public class MinesUi extends Application {
                 }
                 if (game.cellIsFlagged(i, j)) {
                     ImageView ivFlag = new ImageView(flag);
+                    text.setText("mines: " + game.getNumberOfMines() + "\nflags: " + game.getNumberOfFlags());
                     buttons[i][j].setGraphic(ivFlag);
                 }
                 if (!game.cellIsFlagged(i, j) && !game.cellIsOpened(i,j)) {
@@ -321,7 +337,6 @@ public class MinesUi extends Application {
             game.stopGame();
             showMines();
             text.setText("You won!");
-            
             
             Stage st = new Stage();
             VBox lay = new VBox();

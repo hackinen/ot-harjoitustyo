@@ -31,8 +31,7 @@ Perusversiossa ohjelma aukeaa suoraan pelinäkymään (ilman valikkoa), jossa k�
 Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi seuraavilla toiminnoilla:
 
 * valikon luominen ja ruudukon koon valinta (toteutettu)
-* pelin teeman muuttaminen (ruutujen väri)
-* miinojen määrän muuttaminen
+* miinojen ja lippujen määrän näkyminen pelitilanteessa (toteutettu)
 * ajastin ja parhaiden tulosten tallentaminen (toteutettu)
 * mahdollisesti vielä käyttäjäkirjautuminen tai nimimerkin luominen, jotta listauksessa näkyy tuloksen saanut pelaaja (toteutettu)
 

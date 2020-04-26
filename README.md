@@ -11,6 +11,7 @@ Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, jos
 
 [Arkkitehtuurikuvaus](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
+[Käyttöohje](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
 
 [Työaikakirjanpito](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
@@ -50,6 +51,14 @@ Testikattavuusraportti luodaan komennolla:
 
 Kattavuusraporttia voi tarkastella avaamalla tiedoston *target/site/jacoco/index.html* selaimella.
 
+
+### JavaDoc
+
+JavaDoc generoidaan komennolla:
+
+`mvn javadoc:javadoc`
+
+JavaDocia voi tarkastella avaamalla tiedoston target/site/apidocs/index.html
 
 ### Checkstyle
 
