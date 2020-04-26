@@ -10,7 +10,7 @@ Ohjelma käynnistetään ohjelman sijaintikansiosta komennolla
 
 Peli käynnistyy aloitusvalikkonäkymään:
 
-<img src="https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/misc/mainmenu.png" width="350">
+<img src="https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/misc/mainmenu.png" width="100">
 
 Valikosta löytyy neljä eri kokomahdollisuutta pelattavalle miinaharavapelille: 10 x 10, 16 x 16, 20 x 20 ja 30 x 30. Lisäksi valikosta on mahdollista mennä tarkastelemaan läpi pelattujen pelien parhaita aikoja (highscores).
 
