@@ -1,5 +1,9 @@
 # Käyttöohje
 
+## Konfigurointi
+
+Ohjelma ei vaadi erillistä konfigurointia.
+
 ## Ohjelman käynnistäminen
 
 Ohjelma käynnistetään ohjelman sijaintikansiosta komennolla

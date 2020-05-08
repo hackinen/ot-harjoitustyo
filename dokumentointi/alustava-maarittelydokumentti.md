@@ -14,25 +14,21 @@ on saada pääteltyä kaikki ruudukon miinojen paikat ja merkitä ne lipulla.
 Koska kyseessä on yksilöpeli, on pelillä vain yksi käyttäjä eli pelin pelaaja.
 
 
-## Käyttöliittymäluonnos
+## Käyttöliittymä
 
-Sovelluksen käyttöliittymä koostuu mahdollisesti kahdesta eri näkymästä: valikosta ja itse pelinäkymästä. Sovellus siis aukeaa ensin valikkonäkymään, josta valitaan pelin haastavuus (kuinka iso ruudukko halutaan), jonka jälkeen siirrytään valittuun pelinäkymään. Mikäli valikkonäkymää ei ehditä toteuttamaa, koostuu käyttölittymä ainoastaan pelinäkymästä.
+Sovelluksen käyttöliittymä koostuu kolmesta eri näkymästä: valikosta, itse pelinäkymästä ja "Highscores"-näkymästä. Sovellus siis aukeaa ensin valikkonäkymään, josta valitaan pelin haastavuus (kuinka iso ruudukko halutaan), jonka jälkeen siirrytään valittuun pelinäkymään. "Highscores"-näkymään siirrytään joko suoraan alkuvalikosta tai pelin voitettua tallentamalla oman tuloksensa tietokantaan, jonka jälkeen näkymä vaihtuu automaattisesti.
 
 <img src="https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/misc/kayttoliittyma-luonnos.png" width="750">
 
 
-## Perusversion tarjoama toiminallisuus
+## Sovelluksen tarjoamat toiminallisuudet
 
-Perusversiossa ohjelma aukeaa suoraan pelinäkymään (ilman valikkoa), jossa käyttäjän on mahdollista pelata peliä ja aloittaa peli alusta halutessaan. (toteutettu)
+Ohjelma aukeaa aloitusvalikkoon, josta vaikeusasteen valinnan jälkeen siirrytään pelinäkymään, jossa käyttäjän on mahdollista pelata peliä ja aloittaa peli alusta halutessaan. Pelitilanteessa on näkyvissä miinojen ja tähän mennessä merkittyjen lippujen lukumäärä. Käyttäjä voi myös palata kesken pelin/pelin päätyttyä valikkoon. Peliin on toteutettu myös parhaiden pelitulosten seuranta (yhden pelierän kesto mitataan ajastimella pelitilanteen aloituksesta lähtien) ja näitä tuloksia voi tarkastella "Highscores"-näkymässä.
 
 
 ## Jatkokehitysideoita
 
-Perusversion jälkeen ohjelmaa tullaan ajan salliessa parantelemaan esimerkiksi seuraavilla toiminnoilla:
+Ohjelmaa voitaisiin jatkossa vielä laajentaa esimerkiksi seuraavilla toiminnoilla:
 
-* valikon luominen ja ruudukon koon valinta (toteutettu)
-* miinojen ja lippujen määrän näkyminen pelitilanteessa (toteutettu)
-* ajastin ja parhaiden tulosten tallentaminen (toteutettu)
-* mahdollisesti vielä käyttäjäkirjautuminen tai nimimerkin luominen, jotta listauksessa näkyy tuloksen saanut pelaaja (toteutettu)
-
-Kehitysideoista vähintään valikon toteuttaminen pyritään saada kurssin loppuun mennessä toteutettua.
+* ajastimen laittaminen tauolle
+* peli kysyisi tallennettavaa nimimerkkiä vain, jos tulos on tulossa näkyviin parhaiden kymmenen tuloksen joukkoon
