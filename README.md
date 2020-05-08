@@ -1,9 +1,6 @@
 # Miinaharava
 Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja arvoja, joista numeroidut arvot kertovat kuinka moneen miinaan ympärillään kyseinen ruutu koskee. Pelin tarkoituksena on saada pääteltyä kaikki ruudukon miinojen paikat numeroarvojen avulla räjäyttämättä yhtäkään miinaa (eli avaamatta miinan sisältävää ruutua).
 
-## Tämänhetkinen eteneminen
-
-Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, josta voi valita haluamansa vaikeustason sekä parhaiden tulosten tallentaminen kentän koon mukaan ja niiden katseleminen Highscores-näkymässä. Pelitoiminnallisuus toimii kaikissa kentissä, "new game"-napista voi aloittaa uuden (vastaavan kokoisen) pelin ja mikäli pelatessa avaa ruudun, jossa oli miina, loppuu peli. Jos pelin voittaa, avautuu ikkunna, johon voi syöttää nimimerkkinsä ja sovellus tallentaa pelituloksen tietokantaan.
 
 ## Dokumentointi
 
