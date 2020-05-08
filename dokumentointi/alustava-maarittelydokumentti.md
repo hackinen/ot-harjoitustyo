@@ -32,3 +32,4 @@ Ohjelmaa voitaisiin jatkossa vielä laajentaa esimerkiksi seuraavilla toiminnoil
 
 * ajastimen laittaminen tauolle
 * peli kysyisi tallennettavaa nimimerkkiä vain, jos tulos on tulossa näkyviin parhaiden kymmenen tuloksen joukkoon
+* costom-kokoinen kenttä

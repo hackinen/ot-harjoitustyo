@@ -7,17 +7,20 @@ Tällä hetkellä sovellukseen on toteutettu pelin toiminnallisuus, valikko, jos
 
 ## Dokumentointi
 
-[Alustava määrittelydokumentti](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/alustava-maarittelydokumentti.md)
+[Käyttöohje](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
+
+[Vaatimusmäärittely](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/alustava-maarittelydokumentti.md)
 
 [Arkkitehtuurikuvaus](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/arkkitehtuuri.md)
 
-[Käyttöohje](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/kayttoohje.md)
+[Testausdokumentti](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/testausdokumentti.md)
 
 [Työaikakirjanpito](https://github.com/hackinen/ot-harjoitustyo/blob/master/dokumentointi/tyoaikakirjanpito.md)
 
 ## Releaset
 
 [Viikko 5](https://github.com/hackinen/ot-harjoitustyo/releases)
+
 [Viikko 6](https://github.com/hackinen/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
