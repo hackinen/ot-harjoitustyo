@@ -19,4 +19,5 @@
 | 21.4 | 2 | testien tekeminen, checkstyle |
 | 25.4. | 8 | koodin refaktorointia, miinojen ja lippujen määrän seurannan toteuttaminen pelitilanteeseen, ylimääräisen koodin poistamista, testien tekemistä, javadocin tekeminen pakkauksen minesweeper.domain luokkiin |
 | 26.4. | 2 | Käyttöohjeen tekeminen ja käyttöliittymän ulkoasun parantelua |
-| yht | 48 | |
+| 8.5. | 2.5 | dokumentointia, koodin läpikäynti ja refaktorointi |
+| yht | 50.5 | |
