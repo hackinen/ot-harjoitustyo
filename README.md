@@ -20,6 +20,8 @@ Miinaharava-pelissä on ruudukkokenttä, joka sisältää miinoja ja numeroituja
 
 [Viikko 6](https://github.com/hackinen/ot-harjoitustyo/releases/tag/viikko6)
 
+[Loppupalautus](https://github.com/hackinen/ot-harjoitustyo/releases/tag/loppupalautus)
+
 ## Komentorivitoiminnot
 
 ### Suoritettavan jarin generointi

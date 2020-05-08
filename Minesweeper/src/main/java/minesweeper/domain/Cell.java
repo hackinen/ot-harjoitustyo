@@ -22,8 +22,8 @@ public class Cell {
     private boolean flaggedWrong = false;
     private boolean isAngryMine = false;
     
-    public static int MINE = 9;
-    public static int EMPTY = 0;
+    public static int mine = 9;
+    public static int empty = 0;
     
     public Cell() {
     }
@@ -44,7 +44,7 @@ public class Cell {
     
  
     public boolean isMine() {
-        return value == MINE;
+        return value == mine;
     }
     
     public boolean isAngryMine() {
@@ -68,7 +68,7 @@ public class Cell {
     }
      
     public void setMine() {
-        this.value = MINE;
+        this.value = mine;
     }
    
     public void setFlaggedWrong() {
@@ -76,7 +76,7 @@ public class Cell {
     }
 
     public void setValue(int value) {
-        if (value < EMPTY || value > MINE) {
+        if (value < empty || value > mine) {
             return;
         }
         this.value = value;
