@@ -31,7 +31,7 @@ public class MinesweeperGameTest {
     
     @Before
     public void setUp() {
-        mines = new MinesweeperGame(10,"test");
+        mines = new MinesweeperGame(10,"test.db");
     }
     
     @After

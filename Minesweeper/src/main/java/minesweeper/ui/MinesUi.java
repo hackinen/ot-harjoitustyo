@@ -352,6 +352,9 @@ public class MinesUi extends Application {
                 @Override
                 public void handle(ActionEvent event) {
                     String name = textField.getText();
+                    if (name.equals("")) {
+                        name = "unknown";
+                    }
                     game.saveHighscore(gridSize,name);
                     st.close();
                     topSize10.setText(game.getTop10(10));
